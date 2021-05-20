@@ -1,0 +1,38 @@
+SEED: 1337 # random seed for reproduce results
+DATA_ROOT: '/youtu-face/ata_root/remote_tfrecord' # the parent root where your train/val/test data are stored
+INDEX_ROOT: '/youtu-face/train_data/'
+DATASETS:  # the dataset index name
+    - name: TFR-RFW_EqualizedFace_112_shuf
+      batch_size: 64
+      weight: 1.
+
+BACKBONE_RESUME: ""
+HEAD_RESUME: ""
+META_RESUME: ""
+
+BACKBONE_NAME: 'IR_34'
+DIST_FC: false
+TFRRECORD: true
+MODEL_ROOT: './ckpt/' # the root to buffer your checkpoints
+LOG_ROOT: './tensorboard' # the root to log your train/val status
+HEAD_NAME: "Cifp" # support:  ['ArcFace', 'CurricularFace', 'CosFace']
+LOSS_NAME: 'Softmax' # support: ['DistCrossEntropy', 'Softmax']
+INPUT_SIZE: [112, 112] # support: [112, 112] and [224, 224]
+RGB_MEAN: [0.5, 0.5, 0.5] # for normalize inputs to [-1, 1]
+RGB_STD: [0.5, 0.5, 0.5]
+INPUT_SIZE: [112, 112]
+EMBEDDING_SIZE: 512 # feature dimension
+LR: 0.1 # initial LR
+START_EPOCH: 0 # start epoch
+WARMUP_STEP: -1
+NUM_EPOCH: 45 # total epoch number
+WEIGHT_DECAY: 0.0005 # do not apply to batch_norm parameters
+MOMENTUM: 0.9
+STAGES: [20, 32, 36] # epoch stages to decay learning rate
+WORLD_SIZE: 1
+RANK: 0
+LOCAL_RANK: 0
+DIST_BACKEND: 'nccl'
+DIST_URL: 'env://'
+NUM_WORKERS: 8
+AMP: true # fp16 for backbone

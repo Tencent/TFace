@@ -1,0 +1,48 @@
+SEED: 1337 # random seed for reproduce results
+DATA_ROOT: '/youtu-face/ata_root/remote_tfrecord' # the parent root where your train/val/test data are stored
+INDEX_ROOT: '/youtu-face/train_data/'
+DATASETS:  # the dataset index name
+    - name: TFR-vggface2_easy_test
+      batch_size: 32
+      weight: 1.
+    
+    - name: TFR-vggface2_hard_test
+      batch_size: 32
+      weight: 1.
+
+    - name: TFR-vggface2_pair_easy_test
+      batch_size: 32
+      weight: 1.
+      IS_PAIR: True
+
+    - name: TFR-vggface2_pair_hard_test
+      batch_size: 32
+      weight: 1.
+      IS_PAIR: True
+
+BACKBONE_RESUME: ""
+HEAD_RESUME: ""
+META_RESUME: ""
+
+BACKBONE_NAME: 'IR_50'
+DIST_FC: true
+MODEL_ROOT: './ckpt/' # the root to buffer your checkpoints
+LOG_ROOT: './tensorboard' # the root to log your train/val status
+HEAD_NAME: "CurricularFace" # support:  ['ArcFace', 'CurricularFace', 'CosFace']
+LOSS_NAME: 'DistCrossEntropy' # support: ['DistCrossEntropy', 'Softmax']
+RGB_MEAN: [0.5, 0.5, 0.5] # for normalize inputs to [-1, 1]
+RGB_STD: [0.5, 0.5, 0.5]
+INPUT_SIZE: [112, 112]
+EMBEDDING_SIZE: 512 # feature dimension
+LR: 0.001 # initial LR
+START_EPOCH: 0 #start epoch
+WARMUP_STEP: -1
+NUM_EPOCH: 2 # total epoch number
+WEIGHT_DECAY: 0.0005 # do not apply to batch_norm parameters
+MOMENTUM: 0.9
+STAGES: [1] # epoch stages to decay learning rate
+LOCAL_RANK: 0
+DIST_BACKEND: 'nccl'
+DIST_URL: 'env://'
+NUM_WORKERS: 8
+AMP: false # fp16 for backbone

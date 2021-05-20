@@ -1,0 +1,17 @@
+// Protocol messages for describing input data Examples for machine learning
+// model training or inference.
+syntax = "proto3";
+
+import "feature.proto";
+option cc_enable_arenas = true;
+
+package face;
+
+message Example {
+  Features features = 1;
+};
+
+message SequenceExample {
+  Features context = 1;
+  FeatureLists feature_lists = 2;
+};

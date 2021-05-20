@@ -1,0 +1,10 @@
+*/__pycache__
+*.pyc
+*.log
+logs/
+models/
+.vscode/
+.idea/
+*.swp
+rpf.yaml
+*.bak
