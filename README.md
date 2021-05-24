@@ -8,7 +8,7 @@
 
 ## Recent News
 
-**`2021.3`**: `SDD-FIQA: Unsupervised Face Image Quality Assessment with Similarity Distribution Distance` accepted by **CVPR2021** , details see [SDD-FIQA](https://git.code.oa.com/TencentFace/TFace/tree/quality)
+**`2021.3`**: `SDD-FIQA: Unsupervised Face Image Quality Assessment with Similarity Distribution Distance` accepted by **CVPR2021** , details see [SDD-FIQA](https://github.com/Tencent/TFace/tree/quality)
 
 **`2021.3`**: `Consistent Instance False Positive Improves Fairness in Face Recognition` accepted by **CVPR2021**, details see [CIFP](tasks/cifp/README.md)
 
