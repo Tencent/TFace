@@ -12,7 +12,7 @@
 
 **`2021.3`**: `Consistent Instance False Positive Improves Fairness in Face Recognition` accepted by **CVPR2021**, details see [CIFP](tasks/cifp/README.md)
 
-**`2021.3`**: `Spherical Confidence Learning for Face Recognition` accpted by **CVPR2021**, details see [SCF](tasks/scf/README.md)
+**`2021.3`**: `Spherical Confidence Learning for Face Recognition` accepted by **CVPR2021**, details see [SCF](tasks/scf/README.md)
 
 **`2020.8`**: `Improving Face Recognition from Hard Samples via Distribution Distillation Loss` accepted by **ECCV2020**, details see [DDL](tasks/ddl/README.md)
 
