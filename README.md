@@ -48,7 +48,7 @@ python3 tools/decode.py --tfrecords_dir=${tfr_dir} --output_dir=${output_dir}
 ```
 
 ### Augmentation
-Data Augmenattion module implements some 2D-based methods to generated some hard samples, e.g., maks, glass, headscarf. Details see [Augmentation](torchkit/augmentation/README.md)
+Data Augmentation module implements some 2D-based methods to generated some hard samples, e.g., maks, glass, headscarf. Details see [Augmentation](torchkit/augmentation/README.md)
 
 
 
