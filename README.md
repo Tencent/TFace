@@ -2,7 +2,7 @@
 
 ## Introduction
 
-**TFace**: A trusty face recognition research platform developed by Tencent Youtu Lab. It provides a high-performance distributed training framework and releases our efficient methods implementation. This repo consists of four modules: 1. different data augmentation, 2. backbone model zoo, 3. our proposed methods for face recognition and face quality, 4. test protocols of evalution results and model latency.
+**TFace**: A trusty face recognition research platform developed by Tencent Youtu Lab. It provides a high-performance distributed training framework and releases our efficient methods implementation. This repo consists of four modules: 1. various data augmentation methods, 2. backbone model zoo, 3. our proposed methods for face recognition and face quality, 4. test protocols of evalution results and model latency.
 
 <img src="doc/framework.png" title="framework" /> 
 
@@ -30,7 +30,7 @@
 
 ### Train Data
 
-The training dataset is organized in tfrecord format for efficiency. The raw data of all face images is saved in tfrecord files, and every dataset has a corresponding index file(each line includes tfrecord_name, trecord_index offset, label). The `IndexTFRDataset` class will parse the index file to gather image data and label for training. This form of dataset is convenient for reorganization in data cleaning(do not reproduce tfrecord, just reproduce the index file).
+The training dataset is organized in tfrecord format for efficiency. The raw data of all face images are saved in tfrecord files, and each dataset has a corresponding index file(each line includes tfrecord_name, trecord_index offset, label). The `IndexTFRDataset` class will parse the index file to gather image data and label for training. This form of dataset is convenient for reorganization in data cleaning(do not reproduce tfrecord, just reproduce the index file).
 
 1. Convert raw image to tfrecords, generate a new data dir including some tfrecord files and a index_map file
 ``` bash
