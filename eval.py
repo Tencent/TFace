@@ -35,7 +35,7 @@ def network(eval_model, device):
     return net
 
 if __name__ == "__main__":
-    imgpath = './test_imgs/1.jpg'                         # [1,2,3.jpg]
+    imgpath = './demo_imgs/1.jpg'                         # [1,2,3.jpg]
     device = 'cpu'                                        # 'cpu' or 'cuda:x'
     eval_model = './model/SDD_FIQA_checkpoints_r50.pth'   # checkpoint
     net = network(eval_model, device)
