@@ -158,5 +158,5 @@ def R50(input_size, use_type = "Rec"):
     if use for quality network, select self.use_type == "Qua"
     if use for recognition network, select self.use_type == "Rec"
     '''
-    model = Backbone(input_size, 50, 'ir', use_type = "Rec")
+    model = Backbone(input_size, 50, 'ir', use_type = use_type)
     return model
