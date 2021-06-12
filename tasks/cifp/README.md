@@ -18,6 +18,12 @@ Specifically, we first define the instance FPR as the ratio between the number o
 
 <img src="doc/experiment2.png" title="experiments" width="500" />
 
+## Model
+The IR34 pretrained model on BUPT-Balancedface can be downloaded here. 
+[Baidu Cloud](link: https://pan.baidu.com/s/1PYu-yKvKsMUVfMBSEsUCEg 
+passwd: vjft), 
+[Google Drive](https://drive.google.com/file/d/1arwPepFwOv0C5ALYMKXU8Ahq3atMeQLD/view?usp=sharing)
+
 ## Citation
 If you find this code useful in your research, please consider citing us:
 ```
