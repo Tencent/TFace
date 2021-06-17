@@ -4,7 +4,7 @@
 
 **TFace**: A trusty face recognition research platform developed by Tencent Youtu Lab. It provides a high-performance distributed training framework and releases our efficient methods implementation. 
 
-This framework consists of serveral modules: 1. various data augmentation methods, 2. backbone model zoo, 3. our proposed methods for face recognition and face quality, 4. test protocols of evalution results and model latency.
+This framework consists of several modules: 1. various data augmentation methods, 2. backbone model zoo, 3. our proposed methods for face recognition and face quality, 4. test protocols of evalution results and model latency.
 
 <img src="doc/framework.png" title="framework" /> 
 
@@ -52,7 +52,7 @@ python3 tools/decode.py --tfrecords_dir=${tfr_dir} --output_dir=${output_dir}
 ```
 
 ### Augmentation
-Data Augmentation module implements some 2D-based methods to generated some hard samples, e.g., maks, glass, headscarf. Details see [Augmentation](torchkit/augmentation/README.md)
+Data Augmentation module implements some 2D-based methods to generated some hard samples, e.g., maks, glass, headscarf. Details see [Augmentation](https://github.com/Tencent/TFace/tree/master/torchkit/augmentation)
 
 
 
@@ -67,7 +67,7 @@ bash local_train.sh
 
 ### Test
 
-Detail codes and steps see [Test](test/README.md)
+Detail codes and steps see [Test](https://github.com/Tencent/TFace/tree/master/test)
 
 ## Benchmark
 
