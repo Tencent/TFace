@@ -2,21 +2,23 @@
 
 ## Introduction
 
-**TFace**: A trusty face recognition research platform developed by Tencent Youtu Lab. It provides a high-performance distributed training framework and releases our efficient methods implementation. This repo consists of four modules: 1. various data augmentation methods, 2. backbone model zoo, 3. our proposed methods for face recognition and face quality, 4. test protocols of evalution results and model latency.
+**TFace**: A trusty face recognition research platform developed by Tencent Youtu Lab. It provides a high-performance distributed training framework and releases our efficient methods implementation. 
+
+This framework consists of serveral modules: 1. various data augmentation methods, 2. backbone model zoo, 3. our proposed methods for face recognition and face quality, 4. test protocols of evalution results and model latency.
 
 <img src="doc/framework.png" title="framework" /> 
 
 ## Recent News
 
-**`2021.3`**: `SDD-FIQA: Unsupervised Face Image Quality Assessment with Similarity Distribution Distance` accepted by **CVPR2021** , details see [SDD-FIQA](https://github.com/Tencent/TFace/tree/quality)
+**`2021.3`**: `SDD-FIQA: Unsupervised Face Image Quality Assessment with Similarity Distribution Distance` accepted by **CVPR2021**. [[paper](https://arxiv.org/abs/2103.05977)] [[code](https://github.com/Tencent/TFace/tree/quality)]
 
-**`2021.3`**: `Consistent Instance False Positive Improves Fairness in Face Recognition` accepted by **CVPR2021**, details see [CIFP](tasks/cifp/README.md)
+**`2021.3`**: `Consistent Instance False Positive Improves Fairness in Face Recognition` accepted by **CVPR2021**. [[paper](https://arxiv.org/abs/2106.05519)] [[code](https://github.com/Tencent/TFace/tree/master/tasks/cifp)]
 
-**`2021.3`**: `Spherical Confidence Learning for Face Recognition` accepted by **CVPR2021**, details see [SCF](tasks/scf/README.md)
+**`2021.3`**: `Spherical Confidence Learning for Face Recognition` accepted by **CVPR2021**. [[paper](https://openaccess.thecvf.com/content/CVPR2021/papers/Li_Spherical_Confidence_Learning_for_Face_Recognition_CVPR_2021_paper.pdf)] [[code](https://github.com/Tencent/TFace/tree/master/tasks/scf)]
 
-**`2020.8`**: `Improving Face Recognition from Hard Samples via Distribution Distillation Loss` accepted by **ECCV2020**, details see [DDL](tasks/ddl/README.md)
+**`2020.8`**: `Improving Face Recognition from Hard Samples via Distribution Distillation Loss` accepted by **ECCV2020**. [[paper](https://arxiv.org/abs/2002.03662)] [[code](https://github.com/Tencent/TFace/tree/master/tasks/ddl)]
 
-**`2020.3`**: `Curricularface: adaptive curriculum learning loss for deep face recognition` has been accepted by **CVPR2020**, details see [Curricularface](tasks/distfc/README.md)
+**`2020.3`**: `Curricularface: adaptive curriculum learning loss for deep face recognition` has been accepted by **CVPR2020**. [[paper](https://arxiv.org/abs/2004.00288)] [[code](https://github.com/Tencent/TFace/tree/master/tasks/distfc)]
 
 ## Requirements
 * python==3.6.0
@@ -30,7 +32,9 @@
 
 ### Train Data
 
-The training dataset is organized in tfrecord format for efficiency. The raw data of all face images are saved in tfrecord files, and each dataset has a corresponding index file(each line includes tfrecord_name, trecord_index offset, label). The `IndexTFRDataset` class will parse the index file to gather image data and label for training. This form of dataset is convenient for reorganization in data cleaning(do not reproduce tfrecord, just reproduce the index file).
+The training dataset is organized in tfrecord format for efficiency. The raw data of all face images are saved in tfrecord files, and each dataset has a corresponding index file(each line includes tfrecord_name, trecord_index offset, label). 
+
+The `IndexTFRDataset` class will parse the index file to gather image data and label for training. This form of dataset is convenient for reorganization in data cleaning(do not reproduce tfrecord, just reproduce the index file).
 
 1. Convert raw image to tfrecords, generate a new data dir including some tfrecord files and a index_map file
 ``` bash
