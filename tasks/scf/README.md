@@ -21,10 +21,11 @@ An emerging line of research has found that spherical spaces better match the un
 
 ## Citation
 ```
-@inproceedings{Li2021SCF,
-title={Spherical Confidence Learning for Face Recognition},
-author={Shen,Li and Jianqing,Xu and Xiaqing,Xu and Pengcheng,Shen and Shaoxin,Li and Bryan,Hooi},
-booktitle={CVPR},
-year={2021}
+@inproceedings{li2021spherical,
+  title={Spherical Confidence Learning for Face Recognition},
+  author={Li, Shen and Xu, Jianqing and Xu, Xiaqing and Shen, Pengcheng and Li, Shaoxin and Hooi, Bryan},
+  booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
+  pages={15629--15637},
+  year={2021}
 }
 ```
