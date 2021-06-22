@@ -48,6 +48,7 @@ class Cifp(nn.Module):
         target_cos_theta_m = target_cos_theta - self.margin
 
         far = 1 / (self.out_features - 1)
+        # far = 1e-4
         topk_mask = torch.greater(tmp_cos_theta, target_cos_theta)
         topk_sum = torch.sum(topk_mask.to(torch.int32))
         dist.all_reduce(topk_sum)
