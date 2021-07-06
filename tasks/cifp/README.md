@@ -27,10 +27,11 @@ passwd: vjft),
 ## Citation
 If you find this code useful in your research, please consider citing us:
 ```
-@inproceedings{xingkunxu,
-title={Consistent Instance False Positive Improves Fairness in Face Recognition},
-author={Xu, Xingkun and Huang, Yuge and Shen, Pengcheng and li, Shaoxin and Li, Jilin and Huang, Feiyue},
-booktitle={CVPR},
-year={2021}
+@inproceedings{xu2021consistent,
+  title={Consistent Instance False Positive Improves Fairness in Face Recognition},
+  author={Xu, Xingkun and Huang, Yuge and Shen, Pengcheng and Li, Shaoxin and Li, Jilin and Huang, Feiyue and Li, Yong and Cui, Zhen},
+  booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
+  pages={578--586},
+  year={2021}
 }
 ```
