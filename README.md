@@ -9,7 +9,7 @@ This framework consists of several modules: 1. various data augmentation methods
 <img src="doc/framework.png" title="framework" /> 
 
 ## Recent News
-**`2021.7`**:  We released a inference example for linux_x86 based on TNN framework. :fire::fire::fire:
+**`2021.7`**:  We released a inference example for linux_x86 based on TNN framework. [inference example](https://github.com/Tencent/TFace/tree/master/deploy)  :fire::fire::fire:
 
 **`2021.5`**: `Federated Face Recognition`. [[paper](https://arxiv.org/abs/2105.02501)] :fire:
 
