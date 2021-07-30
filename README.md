@@ -9,19 +9,19 @@ This framework consists of several modules: 1. various data augmentation methods
 <img src="doc/framework.png" title="framework" /> 
 
 ## Recent News
-**`2021.7`**:  We released a inference example for linux_x86 based on TNN framework.
+**`2021.7`**:  We released a inference example for linux_x86 based on TNN framework. :fire::fire::fire:
 
-**`2021.5`**: `Federated Face Recognition`. [[paper](https://arxiv.org/abs/2105.02501)]
+**`2021.5`**: `Federated Face Recognition`. [[paper](https://arxiv.org/abs/2105.02501)] :fire:
 
-**`2021.3`**: `SDD-FIQA: Unsupervised Face Image Quality Assessment with Similarity Distribution Distance` accepted by **CVPR2021**. [[paper](https://arxiv.org/abs/2103.05977)] [[code](https://github.com/Tencent/TFace/tree/quality)]
+**`2021.3`**: `SDD-FIQA: Unsupervised Face Image Quality Assessment with Similarity Distribution Distance` accepted by **CVPR2021**. [[paper](https://arxiv.org/abs/2103.05977)] [[code](https://github.com/Tencent/TFace/tree/quality)] :fire:
 
-**`2021.3`**: `Consistent Instance False Positive Improves Fairness in Face Recognition` accepted by **CVPR2021**. [[paper](https://arxiv.org/abs/2106.05519)] [[code](https://github.com/Tencent/TFace/tree/master/tasks/cifp)]
+**`2021.3`**: `Consistent Instance False Positive Improves Fairness in Face Recognition` accepted by **CVPR2021**. [[paper](https://arxiv.org/abs/2106.05519)] [[code](https://github.com/Tencent/TFace/tree/master/tasks/cifp)] :fire:
 
-**`2021.3`**: `Spherical Confidence Learning for Face Recognition` accepted by **CVPR2021**. [[paper](https://openaccess.thecvf.com/content/CVPR2021/papers/Li_Spherical_Confidence_Learning_for_Face_Recognition_CVPR_2021_paper.pdf)] [[code](https://github.com/Tencent/TFace/tree/master/tasks/scf)]
+**`2021.3`**: `Spherical Confidence Learning for Face Recognition` accepted by **CVPR2021**. [[paper](https://openaccess.thecvf.com/content/CVPR2021/papers/Li_Spherical_Confidence_Learning_for_Face_Recognition_CVPR_2021_paper.pdf)] [[code](https://github.com/Tencent/TFace/tree/master/tasks/scf)]:fire:
 
-**`2020.8`**: `Improving Face Recognition from Hard Samples via Distribution Distillation Loss` accepted by **ECCV2020**. [[paper](https://arxiv.org/abs/2002.03662)] [[code](https://github.com/Tencent/TFace/tree/master/tasks/ddl)]
+**`2020.8`**: `Improving Face Recognition from Hard Samples via Distribution Distillation Loss` accepted by **ECCV2020**. [[paper](https://arxiv.org/abs/2002.03662)] [[code](https://github.com/Tencent/TFace/tree/master/tasks/ddl)] :fire:
 
-**`2020.3`**: `Curricularface: adaptive curriculum learning loss for deep face recognition` has been accepted by **CVPR2020**. [[paper](https://arxiv.org/abs/2004.00288)] [[code](https://github.com/Tencent/TFace/tree/master/tasks/distfc)]
+**`2020.3`**: `Curricularface: adaptive curriculum learning loss for deep face recognition` has been accepted by **CVPR2020**. [[paper](https://arxiv.org/abs/2004.00288)] [[code](https://github.com/Tencent/TFace/tree/master/tasks/distfc)] :fire:
 
 
 ## Getting Started
