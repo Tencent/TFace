@@ -1,26 +1,27 @@
 from __future__ import absolute_import, division, print_function, unicode_literals
 
+import os
 import copy
 import json
 import logging
-import numpy as np
 from collections import OrderedDict
-
+import numpy as np
 import torch
 import torch.nn as nn
+from torch.nn import Conv2d, BatchNorm2d
+from torchkit.backbone.common import initialize_weights
 from .layers import (
     FrozenBatchNorm2d,
     interpolate,
     _NewEmptyTensorOp
 )
-from torch.nn import Conv2d, BatchNorm2d
 
-from torchkit.backbone.common import initialize_weights
 
 logger = logging.getLogger(__name__)
-
-with open('torchkit/backbone/fbnets/fbnet_modeldef.json') as f:
+json_file = os.path.join(os.path.abspath(os.path.dirname(__file__)), 'fbnet_modeldef.json')
+with open(json_file) as f:
     MODEL_ARCH = json.load(f)
+
 
 def make_divisible(x, divisible_by=8, min_val=8):
     """make channels divisible

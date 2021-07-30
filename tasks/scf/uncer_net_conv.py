@@ -45,4 +45,4 @@ class UncertaintyNet_conv(nn.Module):
 
         #kappa = self._kappa(convf) * 3790353 # exp(20) / (radius*2)
 
-        return log_kappa #kappa
+        return log_kappa

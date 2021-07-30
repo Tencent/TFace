@@ -1,12 +1,11 @@
 import os
 import sys
 import logging
-import torch
-import torch.cuda.amp as amp
-from torch.distributed import ReduceOp
 sys.path.append(os.path.join(os.path.abspath(os.path.dirname(__file__)), '..', '..'))
 
 from tasks.localfc.train_localfc import TrainTask
+
+logging.basicConfig(level=logging.INFO, format='%(asctime)s: %(message)s')
 
 
 def main():

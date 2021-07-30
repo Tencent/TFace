@@ -9,6 +9,9 @@ This framework consists of several modules: 1. various data augmentation methods
 <img src="doc/framework.png" title="framework" /> 
 
 ## Recent News
+**`2021.7`**:  We released a inference example for linux_x86 based on TNN framework.
+
+**`2021.5`**: `Federated Face Recognition`. [[paper](https://arxiv.org/abs/2105.02501)]
 
 **`2021.3`**: `SDD-FIQA: Unsupervised Face Image Quality Assessment with Similarity Distribution Distance` accepted by **CVPR2021**. [[paper](https://arxiv.org/abs/2103.05977)] [[code](https://github.com/Tencent/TFace/tree/quality)]
 
@@ -19,13 +22,6 @@ This framework consists of several modules: 1. various data augmentation methods
 **`2020.8`**: `Improving Face Recognition from Hard Samples via Distribution Distillation Loss` accepted by **ECCV2020**. [[paper](https://arxiv.org/abs/2002.03662)] [[code](https://github.com/Tencent/TFace/tree/master/tasks/ddl)]
 
 **`2020.3`**: `Curricularface: adaptive curriculum learning loss for deep face recognition` has been accepted by **CVPR2020**. [[paper](https://arxiv.org/abs/2004.00288)] [[code](https://github.com/Tencent/TFace/tree/master/tasks/distfc)]
-
-## Requirements
-* python==3.6.0
-* torch==1.6.0
-* torchvision==0.7.0
-* tensorboard==2.4.0
-* Pillow==5.0.0
 
 
 ## Getting Started
@@ -38,28 +34,61 @@ The `IndexTFRDataset` class will parse the index file to gather image data and l
 
 1. Convert raw image to tfrecords, generate a new data dir including some tfrecord files and a index_map file
 ``` bash
-python3 tools/img2tfrecord.py --img_list=${img_list} --pts_list=${pts_list} --tfrecords_name=${tfr_data_name}
+python3 tools/img2tfrecord.py --help
+usage: img2tfrecord.py [-h] --img_list IMG_LIST --pts_list PTS_LIST
+                       --tfrecords_name TFRECORDS_NAME
+
+imgs to tfrecord
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --img_list IMG_LIST   path to the image file (default: None)
+  --pts_list PTS_LIST   path to 5p list (default: None)
+  --tfrecords_name TFRECORDS_NAME
+                        path to the output of tfrecords dir path (default:
+                        TFR-MS1M)
 ```
 
 2. Convert old index file(each line includes image path, label) to new index file
 ``` bash
-python3 tools/convert_new_index.py --old=${old_index} --tfr_index=${tfr_index} --new=${new_index}
+python3 tools/convert_new_index.py --help
+usage: convert_new_index.py [-h] --old OLD --tfr_index TFR_INDEX --new NEW
+
+convert training index file
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --old OLD             path to old training list (default: None)
+  --tfr_index TFR_INDEX
+                        path to tfrecord index file (default: None)
+  --new NEW             path to new training list (default: None)
 ```
 
 3. Decode the tfrecords to raw image
 ``` bash
-python3 tools/decode.py --tfrecords_dir=${tfr_dir} --output_dir=${output_dir}
+python3 tools/decode.py --help
+usage: decode.py [-h] --tfrecords_dir TFRECORDS_DIR --output_dir OUTPUT_DIR
+                 --limit LIMIT
+
+decode tfrecord
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --tfrecords_dir TFRECORDS_DIR
+                        path to the output of tfrecords dir path (default:
+                        None)
+  --output_dir OUTPUT_DIR
+                        path to the output of decoded imgs (default: None)
+  --limit LIMIT         limit num of decoded samples (default: 10)
 ```
 
 ### Augmentation
 Data Augmentation module implements some 2D-based methods to generated some hard samples, e.g., maks, glass, headscarf. Details see [Augmentation](https://github.com/Tencent/TFace/tree/master/torchkit/augmentation)
 
 
-
 ###  Train
 
 Modified the `DATA_ROOT`and`INDEX_ROOT`in `./tasks/distfc/train_confing.yaml`, `DATA_ROOT` is the parent dir for tfrecord dir,  `INDEX_ROOT` is the parent dir for index file.
-
 
 ```bash
 bash local_train.sh
@@ -67,7 +96,11 @@ bash local_train.sh
 
 ### Test
 
-Detail codes and steps see [Test](https://github.com/Tencent/TFace/tree/master/test)
+Detail implementations and steps see [Test](https://github.com/Tencent/TFace/tree/master/test)
+
+### Inference
+
+Detail implementations see [Deploy](https://github.com/Tencent/TFace/tree/master/deploy)
 
 ## Benchmark
 
