@@ -1,151 +1,59 @@
-<img src="doc/logo.png" title="Logo" width="600" /> 
+<img src="recognition/doc/logo.png" title="Logo" width="600" />
 
 ## Introduction
 
-**TFace**: A trusty face recognition research platform developed by Tencent Youtu Lab. It provides a high-performance distributed training framework and releases our efficient methods implementation. 
+TFace: A trusty face analysis research platform developed by Tencent Youtu Lab. It provides a high-performance distributed training framework and releases our efficient methods implementations.
+Some of the algorithms are self-developed, and we believe the released codes benefits researchers to follow.
 
-This framework consists of several modules: 1. various data augmentation methods, 2. backbone model zoo, 3. our proposed methods for face recognition and face quality, 4. test protocols of evalution results and model latency.
+This project consists of several modules: **Face Recognition**, **Face Security** and **Face Quality**.
 
-<img src="doc/framework.png" title="framework" /> 
+### Face Recognition
+This module implements various state-of-art algorithms for face recognition.
 
-## Recent News
-**`2021.7`**:  We released a inference example for linux_x86 based on TNN framework. [inference example](https://github.com/Tencent/TFace/tree/master/deploy)  :fire::fire::fire:
+#### Paper List:
+**`2021.3`**: `Consistent Instance False Positive Improves Fairness in Face Recognition` accepted by **CVPR2021**. [[paper](https://arxiv.org/abs/2106.05519)]
 
-**`2021.5`**: `Federated Face Recognition`. [[paper](https://arxiv.org/abs/2105.02501)] :fire:
+**`2021.3`**: `Spherical Confidence Learning for Face Recognition` accepted by **CVPR2021**. [[paper](https://openaccess.thecvf.com/content/CVPR2021/papers/Li_Spherical_Confidence_Learning_for_Face_Recognition_CVPR_2021_paper.pdf)] 
 
-**`2021.3`**: `SDD-FIQA: Unsupervised Face Image Quality Assessment with Similarity Distribution Distance` accepted by **CVPR2021**. [[paper](https://arxiv.org/abs/2103.05977)] [[code](https://github.com/Tencent/TFace/tree/quality)] :fire:
+**`2020.8`**: `Improving Face Recognition from Hard Samples via Distribution Distillation Loss` accepted by **ECCV2020**. [[paper](https://arxiv.org/abs/2002.03662)]
 
-**`2021.3`**: `Consistent Instance False Positive Improves Fairness in Face Recognition` accepted by **CVPR2021**. [[paper](https://arxiv.org/abs/2106.05519)] [[code](https://github.com/Tencent/TFace/tree/master/tasks/cifp)] :fire:
+**`2020.3`**: `Curricularface: adaptive curriculum learning loss for deep face recognition` has been accepted by **CVPR2020**. [[paper](https://arxiv.org/abs/2004.00288)]
 
-**`2021.3`**: `Spherical Confidence Learning for Face Recognition` accepted by **CVPR2021**. [[paper](https://openaccess.thecvf.com/content/CVPR2021/papers/Li_Spherical_Confidence_Learning_for_Face_Recognition_CVPR_2021_paper.pdf)] [[code](https://github.com/Tencent/TFace/tree/master/tasks/scf)]:fire:
+### Face Security
+This module implements various state-of-art algorithms for face security.
 
-**`2020.8`**: `Improving Face Recognition from Hard Samples via Distribution Distillation Loss` accepted by **ECCV2020**. [[paper](https://arxiv.org/abs/2002.03662)] [[code](https://github.com/Tencent/TFace/tree/master/tasks/ddl)] :fire:
+#### Paper List:
 
-**`2020.3`**: `Curricularface: adaptive curriculum learning loss for deep face recognition` has been accepted by **CVPR2020**. [[paper](https://arxiv.org/abs/2004.00288)] [[code](https://github.com/Tencent/TFace/tree/master/tasks/distfc)] :fire:
+**`2021.12`**:  `Dual Contrastive Learning for General Face Forgery Detection` accepted by **AAAI2022**
 
+**`2021.12`**:  `Exploiting Fine-grained Face Forgery Clues via Progressive Enhancement Learning` accepted by **AAAI2022**
 
-## Getting Started
+**`2021.12`**:  `Delving into the Local: Dynamic Inconsistency Learning for DeepFake Video Detection` accepted by **AAAI2022**
 
-### Train Data
+**`2021.12`**:  `Feature Generation and Hypothesis Verification for Reliable Face Anti-Spoofing` accepted by **AAAI2022**
 
-The training dataset is organized in tfrecord format for efficiency. The raw data of all face images are saved in tfrecord files, and each dataset has a corresponding index file(each line includes tfrecord_name, trecord_index offset, label). 
+**`2021.07`**: `Spatiotemporal Inconsistency Learning for DeepFake Video Detection`  accepted by **ACM MM2021**[[paper](https://arxiv.org/pdf/2109.01860.pdf)] [[Analysis](https://mp.weixin.qq.com/s/UMzXD4cpK4q9GXK76dbeww)]
 
-The `IndexTFRDataset` class will parse the index file to gather image data and label for training. This form of dataset is convenient for reorganization in data cleaning(do not reproduce tfrecord, just reproduce the index file).
+**`2021.07`**: `Adaptive Normalized Representation Learning for Generalizable Face Anti-Spoofing`  accepted by **ACM MM2021**[[paper](https://arxiv.org/abs/2108.02667)]
 
-1. Convert raw image to tfrecords, generate a new data dir including some tfrecord files and a index_map file
-``` bash
-python3 tools/img2tfrecord.py --help
-usage: img2tfrecord.py [-h] --img_list IMG_LIST --pts_list PTS_LIST
-                       --tfrecords_name TFRECORDS_NAME
+**`2021.07`**: `Structure Destruction and Content Combination for Face Anti-Spoofing`  accepted by **IJCB2021**[[paper](https://arxiv.org/abs/2107.10628)]
 
-imgs to tfrecord
+**`2021.04`**: `Adv-Makeup: A New Imperceptible and Transferable Attack on Face Recognition`  accepted by **IJCAI2021**[[paper](https://www.ijcai.org/proceedings/2021/0173.pdf)]
 
-optional arguments:
-  -h, --help            show this help message and exit
-  --img_list IMG_LIST   path to the image file (default: None)
-  --pts_list PTS_LIST   path to 5p list (default: None)
-  --tfrecords_name TFRECORDS_NAME
-                        path to the output of tfrecords dir path (default:
-                        TFR-MS1M)
-```
+**`2021.04`**: `Dual Reweighting Domain Generalization for Face Presentation Attack Detection`  accepted by **IJCAI2021**[[paper](https://www.ijcai.org/proceedings/2021/0120.pdf)]
 
-2. Convert old index file(each line includes image path, label) to new index file
-``` bash
-python3 tools/convert_new_index.py --help
-usage: convert_new_index.py [-h] --old OLD --tfr_index TFR_INDEX --new NEW
+**`2021.03`**: `Delving into Data: Effectively Substitute Training for Black-box Attack` accepted by **CVPR2021**. [[paper](https://arxiv.org/abs/2106.05519)]
 
-convert training index file
+**`2020.12`**: `Generalizable Representation Learning for Mixture Domain Face Anti-Spoofing` accepted by **AAAI2021**. [[paper](https://arxiv.org/abs/2105.02453)]
 
-optional arguments:
-  -h, --help            show this help message and exit
-  --old OLD             path to old training list (default: None)
-  --tfr_index TFR_INDEX
-                        path to tfrecord index file (default: None)
-  --new NEW             path to new training list (default: None)
-```
+**`2020.12`**: `Local Relation Learning for Face Forgery Detection` accepted by **AAAI2021**. [[paper](https://arxiv.org/abs/2105.02577)]
 
-3. Decode the tfrecords to raw image
-``` bash
-python3 tools/decode.py --help
-usage: decode.py [-h] --tfrecords_dir TFRECORDS_DIR --output_dir OUTPUT_DIR
-                 --limit LIMIT
+**`2020.06`**: `Face Anti-Spoofing via Disentangled Representation Learning` accepted by **ECCV2020**. [[paper](https://www.ecva.net/papers/eccv_2020/papers_ECCV/papers/123640630.pdf)]
 
-decode tfrecord
+### Face Quality
 
-optional arguments:
-  -h, --help            show this help message and exit
-  --tfrecords_dir TFRECORDS_DIR
-                        path to the output of tfrecords dir path (default:
-                        None)
-  --output_dir OUTPUT_DIR
-                        path to the output of decoded imgs (default: None)
-  --limit LIMIT         limit num of decoded samples (default: 10)
-```
+This module implements the SDD-FIQA algorithm for face quality.
 
-### Augmentation
-Data Augmentation module implements some 2D-based methods to generated some hard samples, e.g., maks, glass, headscarf. Details see [Augmentation](https://github.com/Tencent/TFace/tree/master/torchkit/augmentation)
+#### Paper List:
 
-
-###  Train
-
-Modified the `DATA_ROOT`and`INDEX_ROOT`in `./tasks/distfc/train_confing.yaml`, `DATA_ROOT` is the parent dir for tfrecord dir,  `INDEX_ROOT` is the parent dir for index file.
-
-```bash
-bash local_train.sh
-```
-
-### Test
-
-Detail implementations and steps see [Test](https://github.com/Tencent/TFace/tree/master/test)
-
-### Inference
-
-Detail implementations see [Deploy](https://github.com/Tencent/TFace/tree/master/deploy)
-
-## Benchmark
-
-### Evaluation Results
-
-|    Backbone    |      Head      |  Data  |  LFW  | CFP-FP | CPLFW | AGEDB | CALFW | IJBB (TPR@FAR=1e-4) | IJBC (TPR@FAR=1e-4) |
-| :------------: | :------------: | :----: | :---: | :----: | :---: | :---: | :---: | :-----------------: | :-----------------: |
-|     IR_101     |    ArcFace     | MS1Mv2 | 99.77 | 98.27  | 92.08 | 98.15 | 95.45 |        94.2         |        95.6         |
-|     IR_101     | CurricularFace | MS1Mv2 | 99.80 | 98.36  | 93.13 | 98.37 | 96.05 |        94.86        |        96.15        |
-|      IR_18      |    ArcFace     | MS1Mv2 | 99.65 | 94.89  | 89.80 | 97.23 | 95.60 |        90.06        |        92.39        |
-|      IR_34      |    ArcFace     | MS1Mv2 | 99.80 | 97.27  | 91.75 | 98.07 | 95.97 |       92.88        | 94.65 |
-|      IR_50      |    ArcFace     | MS1Mv2 | 99.80 | 97.63  | 92.50 | 97.92 | 96.05 |        93.45        |        95.16        |
-| MobileFaceNet  |    ArcFace     | MS1Mv2 | 99.52 | 91.66  | 87.93 | 95.82 | 95.12 |        87.07        |        89.13        |
-| GhostNet_x1.3  |    ArcFace     | MS1Mv2 | 99.65 | 94.20  | 89.87 | 96.95 | 95.58 |        89.61        |        91.96        |
-| EfficientNetB0 |    ArcFace     | MS1Mv2 | 99.60 | 95.90  | 91.07 | 97.58 | 95.82 |        91.79        |        93.67        |
-| EfficientNetB1 |    ArcFace     | MS1Mv2 | 99.60 | 96.39  | 91.75 | 97.65 | 95.73 |        92.43        |        94.43        |
-
-### Backbone model size & latency
-
-The device and platform information see below:
-
-|         | Device                                        | Inference Framework |
-| ------- | --------------------------------------------- | ------------------- |
-| x86 cpu | Intel(R) Xeon(R) Platinum 8255C CPU @ 2.50GHz | [Openvino](https://docs.openvinotoolkit.org/latest/index.html)            |
-| arm     | Kirin 980                                     | [TNN](https://github.com/Tencent/TNN)                 |
-
-Test results for different backbones and different devices：
-
-|    Backbone    | Model Size(fp32) | X86 CPU  |   ARM   |
-| :------------: | :--------------: | :------: | :-----: |
-| EfficientNetB0 |       16MB       | 26.29ms  | 32.09ms |
-| EfficientNetB1 |       26MB       | 35.73ms  | 46.5ms  |
-| MobileFaceNet  |      4.7MB       |  7.63ms  | 15.61ms |
-| GhostNet_x1.3  |       16MB       | 25.70ms  | 27.58ms |
-|     IR_18      |       92MB       | 57.34ms  | 94.58ms |
-|     IR_34      |      131MB       | 105.58ms |   NA    |
-|     IR_50      |      167MB       | 165.95ms |   NA    |
-|     IR_101     |      249MB       | 215.47ms |   NA    |
-
-
-
-## Acknowledgement
-This repo is modified and adapted on these great repositories, we thank theses authors a lot for their greate efforts.
-* [cavaface.pytorch](https://github.com/cavalleria/cavaface.pytorch)
-* [face.evoLVe.PyTorch](https://github.com/ZhaoJ9014/face.evoLVe.PyTorch) 
-* [insightface](https://github.com/deepinsight/insightface)
-* [mobile-vision](https://github.com/facebookresearch/mobile-vision)
-
+**`2021.3`**: `SDD-FIQA: Unsupervised Face Image Quality Assessment with Similarity Distribution Distance` accepted by **CVPR2021**. [[paper](https://arxiv.org/abs/2103.05977)]
