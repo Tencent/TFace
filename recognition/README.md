@@ -85,11 +85,11 @@ bash local_train.sh
 
 ### Test
 
-Detail implementations and steps see [Test](https://github.com/Tencent/TFace/tree/master/test)
+Detail implementations and steps see [Test](https://github.com/Tencent/TFace/tree/master/recognition/test)
 
 ### Inference
 
-Detail implementations see [Deploy](https://github.com/Tencent/TFace/tree/master/deploy)
+Detail implementations see [Deploy](https://github.com/Tencent/TFace/tree/master/recognition/deploy)
 
 ## Benchmark
 
