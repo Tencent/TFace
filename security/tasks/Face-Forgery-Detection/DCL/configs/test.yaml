@@ -1,0 +1,40 @@
+seed: 1234
+torch_home: 'PATH TO YOUR TORCH HOME'
+froze: False
+
+dataset:
+  name: 'celeb_df'
+  pair: False
+  ffpp:
+    data_root: 'PATH TO YOUR DATA ROOT'
+    data_types: ''
+    compressions: 'c23'
+    num_frames: 50
+    methods:
+    has_mask: False
+    mask_size: 10
+    pair: True
+    alb: True
+  celeb_df: 
+    data_root: 'PATH TO YOUR DATA ROOT'
+    data_types: 'images_v1'
+    num_frames: 25
+    sample: 0
+
+  wild_deepfake:
+    root: 'PATH TO YOUR DATA ROOT'
+
+
+
+
+test:
+  batch_size: 32
+  threshold: 0.5
+  record_results: True
+  
+
+
+train:
+  batch_size: 32
+  threshold: 0.5
+  record_results: True

@@ -1,0 +1,67 @@
+seed: 1234
+torch_home: 
+
+method: Deepfakes  # should be one of ['Deepfakes', 'Face2Face', 'FaceSwap', 'NeuralTextures']
+compression: c23   # should be one of ['c23', 'c40']
+exam_dir: data_${method}_${compression}
+
+transform_params:
+  image_size: 224
+  mean: [0.485, 0.456, 0.406]
+  std: [0.229, 0.224, 0.225]
+
+train:
+  batch_size: 10
+  num_workers: 8
+  print_info_step_freq: 1
+  max_epoches: 100
+  use_warmup: True
+  warmup_epochs: 1
+  dataset:
+    name: FFPP_Dataset
+    params:
+      root: data/ffpp_videos
+      face_info_path: data/ffpp_face_rects.pkl
+      method: ${method}
+      compression: ${compression}
+      split: train
+      num_segments: 8
+      sparse_span: 150
+
+test:
+  batch_size: 10
+  num_workers: 8
+  dataset:
+    name: FFPP_Dataset
+    params:
+      root: data/ffpp_videos
+      face_info_path: data/ffpp_face_rects.pkl
+      method: ${method}
+      compression: ${compression}
+      split: val
+      num_segments: 16
+      sparse_span: 150
+
+model:
+  name: STIL_Model
+  params:
+    num_class: 2
+    num_segment: 8
+  resume: 
+  only_resume_model: False
+  not_resume_layer_names:
+
+optimizer:
+  name: Adam
+  params:
+    lr: 0.001
+    weight_decay: 1.0e-5
+
+loss:
+  name: CrossEntropyLoss
+  params:
+
+scheduler:
+  name: piecewise
+  decay_epochs: [5, 20]
+  decay_rates: [0.1, 0.05]

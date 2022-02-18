@@ -1,0 +1,99 @@
+seed: 1234
+torch_home: /path/to/torch
+num_workers: 10
+
+dataset:
+  name: DG_Dataset
+  DG_Dataset:
+    use_LMDB: False
+    LMDB_root: /path/to/lmdb_database
+    train_pos_list1_path: /path/to/Replay_Real_list
+    train_neg_list1_path: /path/to/Replay_Fake_list
+    train_pos_list2_path: /path/to/CASIA_Real_list
+    train_neg_list2_path: /path/to/CASIA_Fake_list
+    train_pos_list3_path: /path/to/MSU_Real_list
+    train_neg_list3_path: /path/to/MSU_Fake_list
+    val_pos_list_path: /path/to/Oulu_Real_list
+    val_neg_list_path: /path/to/Oulu_Fake_list
+    test_pos_list_path: /path/to/Oulu_Real_list
+    test_neg_list_path: /path/to/Oulu_Fake_list
+    img_mode: rgb_hsv
+    depth_map: True
+    depth_map_size: 32
+    crop_face_from_5points: False
+    margin: 2
+    return_path: True
+
+transform:
+  image_size: 256
+  mean: [0.5, 0.5, 0.5]
+  std: [0.5, 0.5, 0.5]
+  num_segments: 2
+
+model:
+  name: Framework
+  ckpt_path: 
+  resume:
+  params:
+    in_ch: 6
+    mid_ch: 384
+    AdapNorm: True
+    AdapNorm_attention_flag: 1layer
+    model_initial: kaiming
+
+loss:
+  name: CrossEntropyLoss
+  weight: 1.0
+  params:
+    reduction: mean
+
+loss_2:
+  name: MSELoss
+  weight: 0.1
+  params:
+    reduction: mean
+
+loss_3:
+  name: EuclideanLoss
+  domain_weight: 0.001
+  discri_weight: 0.001
+  params:
+    reduction: mean
+
+optimizer:
+  name: optimizer_name
+  params:
+    lr: learning_rate
+    weight_decay: weight_decay_rate
+
+scheduler:
+  name: scheduler_name
+  params:
+    decay_t: decay_t
+    decay_rate: decay_rate
+
+train:
+  epochs: 50  
+  batch_size: batchsize
+  print_interval: 10
+  metasize: 2
+  meta_step_size: 0.0001
+
+val:
+  batch_size: batchsize
+
+test:
+  batch_size: batchsize
+  record_results: True
+
+wandb:
+  project: ANRL
+  group: ICMtoO
+  mode: offline
+  job_type:
+  id:
+  resume:
+  save_code: True
+  name:
+  notes:
+

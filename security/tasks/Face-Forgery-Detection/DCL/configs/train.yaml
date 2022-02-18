@@ -1,0 +1,100 @@
+seed: 1234
+torch_home: 'PATH TO YOUR TORCH HOME'
+froze: False
+use_amp: False
+dataset:
+  name: 'FaceForensics'
+  moco: True
+  FaceForensics:
+    data_root: 'PATH TO YOUR DATA ROOT'
+    data_types: ''
+    compressions: 'c23'
+    num_frames: 50
+    methods:
+    has_mask: True
+    mask_size: 10
+    pair: True
+    corr_pair: False
+    random_patch: 3
+    srm: 0.5
+    diff_frame: 0.5
+    image_size: 299
+  CelebDF:
+    data_root: 'PATH TO YOUR DATA ROOT'
+    data_types: ''
+    num_frames: 25
+    pair: True
+    random_patch: 3
+    sample: 0
+
+
+transform:
+  image_size: 299
+  mean: [0.5, 0.5, 0.5]
+  std: [0.5, 0.5, 0.5]
+
+
+model:
+  name: 'DCL'
+  ckpt_path: 
+  params:
+    dim: 100
+    K: 32768
+    m: 0.999
+    T: 0.07
+    threshold: 5
+    
+base_model: 
+    name: BinaryClassifier
+    params:
+      encoder: 'tf_efficientnet_b4_ns'
+      num_classes: 2
+      drop_rate: 0.2
+      has_feature: True
+      pretrained: True
+
+
+loss:
+  name: CrossEntropyLoss
+  weight: 1.0
+  params:
+    reduction: mean
+
+
+optimizer:
+  name: 'Adam'
+  params:
+    lr: 2.0e-4
+    weight_decay: 1.0e-5
+
+
+scheduler:
+  name: StepLRScheduler
+  params:
+    decay_t: 10
+    decay_rate: 0.1
+
+
+train:
+  warmup: 3
+  epochs: 30
+  batch_size: 32
+  print_interval: 100
+  val_interval: 1
+
+
+val:
+  batch_size: 32
+
+
+test:
+  batch_size: 32
+  record_results: True
+
+
+wandb:
+  project: Face-Forgery-Detection
+  group: DCL
+  save_code: True
+  name:
+  resume:

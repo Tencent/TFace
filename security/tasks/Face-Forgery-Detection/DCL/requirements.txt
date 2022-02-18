@@ -1,0 +1,9 @@
+albumentations==0.5.1
+easydict==1.9
+timm==0.4.12
+omegaconf==2.0.5
+nni==1.9
+tensorboardX==2.1
+wandb
+loguru
+rich

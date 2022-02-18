@@ -1,0 +1,86 @@
+seed: 1234
+torch_home: /path/to/torch
+num_workers: 10
+
+dataset:
+  name: FASDataset
+  FASDataset:
+    use_LMDB: False
+    LMDB_root: /path/to/lmdb_database
+    train_pos_list_path: /path/to/Oulu_Protocol_1_train_pos_list
+    train_neg_list_path: /path/to/Oulu_Protocol_1_train_neg_list
+    val_pos_list_path: /path/to/Oulu_Protocol_1_val_pos_list
+    val_neg_list_path: /path/to/Oulu_Protocol_1_val_neg_list
+    test_pos_list_path: /path/to/Oulu_Protocol_1_test_pos_list
+    test_neg_1_list_path: /path/to/Oulu_Protocol_1_test_neg_1_list
+    test_neg_2_list_path: /path/to/Oulu_Protocol_1_test_neg_2_list
+    img_mode: rgb_hsv
+    reflection_map: True
+    reflection_map_size: 32
+    img_size: 255
+    crop_face_from_5points: False
+    margin: 2
+    return_path: True
+    permutation_path: /path/to/permutations_30.npy
+    grid_size: 3
+    
+transform:
+  image_size: 255
+  mean: [0.5, 0.5, 0.5]
+  std: [0.5, 0.5, 0.5]
+  num_segments: 2
+
+model:
+  name: DCN
+  ckpt_path: 
+  resume:
+  params:
+    in_ch: 6
+
+loss:
+  name: MSELoss
+  weight: 1.0
+  params:
+    reduction: mean
+
+loss_2:
+  name: MSELoss
+  weight: 0.1
+  params:
+    reduction: mean
+
+optimizer:
+  name: optimizer_name
+  params:
+    lr: learning_rate
+    weight_decay: weight_decay_rate
+
+scheduler:
+  name: scheduler_name
+  params:
+    decay_t: decay_t
+    decay_rate: decay_rate
+
+train:
+  epochs: 50
+  batch_size: batchsize
+  print_interval: 10
+
+val:
+  batch_size: batchsize
+
+test:
+  batch_size: batchsize
+  record_results: True
+
+wandb:
+  project: DCN
+  group: Oulu_3_1
+  mode: offline
+  job_type:
+  id:
+  resume:
+  save_code: True
+  name:
+  notes:
+

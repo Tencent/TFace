@@ -1,0 +1,24 @@
+checkpoint_dir: ''
+data_dir: './datasets/Datasets_Makeup'
+model_dir: './models_meta_tar_ir152'
+after_dir: 'after_aligned_600'
+before_dir: 'before_aligned_600'
+log_dir: 'log'
+lmk_name: 'landmark_aligned_600.pk'
+use_se: True
+pretrained: False
+train_model_name_list: ['irse50', 'facenet', 'mobile_face']
+val_model_name_list: ['ir152']
+
+lr: 0.001
+update_lr_m: 0.001
+epoch_steps: 300
+gpu: 0
+n_threads: 8
+batch_size: 4
+input_dim: 3
+
+resize_size: [420, 160]
+eye_area: [9, 10, 11, 19, 84, 29, 79, 28, 24, 73, 70, 75, 74, 13, 15, 14, 22]
+mean: [0.5, 0.5, 0.5]
+std: [0.5, 0.5, 0.5]

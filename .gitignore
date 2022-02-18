@@ -2,7 +2,6 @@
 *.pyc
 *.log
 logs/
-models/
 .vscode/
 .idea/
 *.swp
