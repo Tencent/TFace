@@ -5,6 +5,8 @@ Face Recognition module consists of several parts: 1.datasets and samplers, 2. b
 <img src="doc/framework.png" title="framework" /> 
 
 ## Recent News
+**`2022.2`**: We released some pretrain models for human_face and cartoon_face.
+
 **`2021.7`**:  We released a inference example for linux_x86 based on TNN framework.
 
 **`2021.5`**: `Federated Face Recognition`. [[paper](https://arxiv.org/abs/2105.02501)]
@@ -90,6 +92,21 @@ Detail implementations and steps see [Test](https://github.com/Tencent/TFace/tre
 ### Inference
 
 Detail implementations see [Deploy](https://github.com/Tencent/TFace/tree/master/recognition/deploy)
+
+## Model
+
+### Human face recognition models
+|    Backbone    |   IJBB (TPR@FAR=1e-4) |  IJBC (TPR@FAR=1e-4) |  Download Links |
+| :------------: |  :-----------------: | :-----------------: | :------------:  |
+|     IR_50       |  95.84 | 97.16 | [Google Drive](https://drive.google.com/file/d/1HB5P1v3PvOR0gRu529jhk6NhHesunSkr/view?usp=sharing) |
+|     IR_101       |  96.30 | 97.51 | [Google Drive](https://drive.google.com/file/d/1wP8GljExe7MOBYHeuX46xdFAFK3Na08S/view?usp=sharing) |
+
+### Cartoon face recognition models
+
+|    Backbone    |  iCartoonFace Top1 |  Download Links |
+| :------------: |  :-----------------: | :-----------------: | :------------:  |
+|     IR_SE_101       |  88.07 | [Google Drive](https://drive.google.com/file/d/1H3UmAWfFRmPz9-5K6OVD2p06eUr9iaoe/view?usp=sharing) |
+
 
 ## Benchmark
 
