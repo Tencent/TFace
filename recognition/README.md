@@ -104,7 +104,7 @@ Detail implementations see [Deploy](https://github.com/Tencent/TFace/tree/master
 ### Cartoon face recognition models
 
 |    Backbone    |  iCartoonFace Top1 |  Download Links |
-| :------------: |  :-----------------: | :-----------------: | :------------:  |
+| :------------: |  :-----------------: | :-----------------: |
 |     IR_SE_101       |  88.07 | [Google Drive](https://drive.google.com/file/d/1H3UmAWfFRmPz9-5K6OVD2p06eUr9iaoe/view?usp=sharing) |
 
 
