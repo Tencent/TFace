@@ -106,15 +106,15 @@ class DCNTask(BaseTask):
             # exchange the patch of different subdomains
             for j in range(index):
                 ind = block_sequence[j]
-                x_start = net_block[ind][0]
-                x_end = net_block[ind][1]
-                y_start = net_block[ind][2]
-                y_end = net_block[ind][3]
+                y_start = net_block[ind][0]
+                y_end = net_block[ind][1]
+                x_start = net_block[ind][2]
+                x_end = net_block[ind][3]
                 target = (i + 1) % num
-                images_a_cutmix[i, :, x_start:x_end, y_start:y_end] = images_a[target, :, x_start:x_end, y_start:y_end]
-                images_b_cutmix[i, :, x_start:x_end, y_start:y_end] = images_b[target, :, x_start:x_end, y_start:y_end]
-                reflect_a_cutmix[i, x_start:x_end, y_start:y_end] = reflect_a[target, x_start:x_end, y_start:y_end]
-                reflect_b_cutmix[i, x_start:x_end, y_start:y_end] = reflect_b[target, x_start:x_end, y_start:y_end]
+                images_a_cutmix[i, :, y_start:y_end, x_start:x_end] = images_a[target, :, y_start:y_end, x_start:x_end]
+                images_b_cutmix[i, :, y_start:y_end, x_start:x_end] = images_b[target, :, y_start:y_end, x_start:x_end]
+                reflect_a_cutmix[i, y_start:y_end, x_start:x_end] = reflect_a[target, y_start:y_end, x_start:x_end]
+                reflect_b_cutmix[i, y_start:y_end, x_start:x_end] = reflect_b[target, y_start:y_end, x_start:x_end]
 
         for i in range(num):
             # generate the number of patches for exchanging
@@ -124,18 +124,18 @@ class DCNTask(BaseTask):
             # exchange the patch of different labels
             for j in range(index):
                 ind = block_sequence[j]
-                x_start = net_block[ind][0]
-                x_end = net_block[ind][1]
-                y_start = net_block[ind][2]
-                y_end = net_block[ind][3]
-                images_a_cutmix[i, :, x_start:x_end, y_start:y_end] = images_b[i, :, x_start:x_end, y_start:y_end]
-                images_b_cutmix[i, :, x_start:x_end, y_start:y_end] = images_a[i, :, x_start:x_end, y_start:y_end]
-                reflect_a_cutmix[i, x_start:x_end, y_start:y_end] = reflect_b[i, x_start:x_end, y_start:y_end]
-                reflect_b_cutmix[i, x_start:x_end, y_start:y_end] = reflect_a[i, x_start:x_end, y_start:y_end]
-                x = ind % 3
+                y_start = net_block[ind][0]
+                y_end = net_block[ind][1]
+                x_start = net_block[ind][2]
+                x_end = net_block[ind][3]
+                images_a_cutmix[i, :, y_start:y_end, x_start:x_end] = images_b[i, :, y_start:y_end, x_start:x_end]
+                images_b_cutmix[i, :, y_start:y_end, x_start:x_end] = images_a[i, :, y_start:y_end, x_start:x_end]
+                reflect_a_cutmix[i, y_start:y_end, x_start:x_end] = reflect_b[i, y_start:y_end, x_start:x_end]
+                reflect_b_cutmix[i, y_start:y_end, x_start:x_end] = reflect_a[i, y_start:y_end, x_start:x_end]
                 y = ind // 3
-                sim_a_cutmix[i, 0, x, y] = (-1)
-                sim_b_cutmix[i, 0, x, y] = 1
+                x = ind % 3
+                sim_a_cutmix[i, 0, y, x] = (-1)
+                sim_b_cutmix[i, 0, y, x] = 1
 
         # calculate the Similarity Matrix
         w = F.unfold(sim_a_cutmix, kernel_size=1, stride=1, padding=0).permute(0, 2, 1)
