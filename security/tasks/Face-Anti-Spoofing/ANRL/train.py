@@ -174,19 +174,19 @@ class ANRLTask(BaseTask):
         center_fake[index] = center_fake[index] * 0.9 + feat_pool_fake.mean(dim=0).detach() * 0.1
 
         # calculate the domain loss and discrimination loss
-        AA_loss = self.criterion_3(feat_pool_real, center_real[index].detach())
+        AA_loss = self.criterion_3(feat_pool_real, center_real[index])
         AB_loss = 0
         for k in range(3):
             if not k == index:
-                AB_loss += self.criterion_3(feat_pool_real, center_real[k].detach())
+                AB_loss += self.criterion_3(feat_pool_real, center_real[k])
 
         loss_domain = AB_loss / 2 - AA_loss
 
-        RR_loss = self.criterion_3(feat_pool_real, center_real[index].detach())
-        RF_loss = self.criterion_3(feat_pool_real, center_fake[index].detach())
-        FR_loss = self.criterion_3(feat_pool_fake, center_real[index].detach())
+        RR_loss = self.criterion_3(feat_pool_real, center_real[index])
+        RF_loss = self.criterion_3(feat_pool_real, center_fake[index])
+        FR_loss = self.criterion_3(feat_pool_fake, center_real[index])
 
-        loss_discri = RR_loss - RF_loss - FR_loss
+        loss_discri = RF_loss + FR_loss - RR_loss
 
         return loss_1, loss_2, loss_domain, loss_discri
 
