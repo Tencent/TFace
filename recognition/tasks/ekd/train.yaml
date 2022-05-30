@@ -1,0 +1,52 @@
+SEED: 1337 # random seed for reproduce results
+DATA_ROOT: '/youtu-face/ata_root/remote_tfrecord' # the parent root where your train/val/test data are stored
+INDEX_ROOT: '/youtu-face/train_data/'
+DATASETS:  # the dataset index name
+    - name: TFR-refined_ms1m_112_shuf
+      batch_size: 64
+      weight: 1.0
+      scale: 64
+      margin: 0.4
+
+T_BACKBONE_RESUME: ""
+T_BACKBONE_NAME: 'IR_50'
+
+BACKBONE_RESUME: ""
+HEAD_RESUME: ""
+BACKBONE_NAME: 'MobileFaceNet'
+HEAD_NAME: "ArcFace"
+
+META_RESUME: ""
+
+GENERAL_BATCH_SIZE: 32
+BALANCED_BATCH_SIZE: 32
+
+INPUT_SIZE: [112, 112] # support: [112, 112] and [224, 224]
+EMBEDDING_SIZE: 512 # feature dimension
+
+MODEL_ROOT: './ckpt/' # the root to buffer your checkpoints
+LOG_ROOT: './tensorboard' # the root to log your train/val status
+
+DIST_FC: true
+
+RGB_MEAN: [0.5, 0.5, 0.5] # for normalize inputs to [-1, 1]
+RGB_STD: [0.5, 0.5, 0.5]
+
+LRS: [0.1, 0.01, 0.001, 0.0001] # initial LR
+WARMUP_STEP: -1
+STAGES: [10, 18, 22] # epoch stages to decay learning rate
+
+START_EPOCH: 0 # start epoch
+NUM_EPOCH: 26 # total epoch number
+SAVE_EPOCHS: [1, 26]
+
+WEIGHT_DECAY: 0.0005 # do not apply to batch_norm parameters
+MOMENTUM: 0.9
+
+WORLD_SIZE: 1
+RANK: 0
+LOCAL_RANK: 0
+DIST_BACKEND: 'nccl'
+DIST_URL: 'env://'
+
+NUM_WORKERS: 8

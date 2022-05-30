@@ -11,6 +11,9 @@ This project consists of several modules: **Face Recognition**, **Face Security*
 This module implements various state-of-art algorithms for face recognition.
 
 #### Paper List:
+
+**`2022.6`**: `Evaluation-oriented knowledge distillation for deep face recognition` accepted by **CVPR2022**.
+
 **`2021.3`**: `Consistent Instance False Positive Improves Fairness in Face Recognition` accepted by **CVPR2021**. [[paper](https://arxiv.org/abs/2106.05519)]
 
 **`2021.3`**: `Spherical Confidence Learning for Face Recognition` accepted by **CVPR2021**. [[paper](https://openaccess.thecvf.com/content/CVPR2021/papers/Li_Spherical_Confidence_Learning_for_Face_Recognition_CVPR_2021_paper.pdf)] 

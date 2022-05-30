@@ -5,6 +5,8 @@ Face Recognition module consists of several parts: 1.datasets and samplers, 2. b
 <img src="doc/framework.png" title="framework" /> 
 
 ## Recent News
+**`2022.6`**: `Evaluation-oriented knowledge distillation for deep face recognition` accepted by **CVPR2022**.
+
 **`2022.2`**: We released some pretrain models for human_face and cartoon_face.
 
 **`2021.7`**:  We released a inference example for linux_x86 based on TNN framework.
