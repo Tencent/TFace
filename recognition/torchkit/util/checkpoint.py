@@ -43,7 +43,8 @@ class CkptLoader(object):
             logging.info('Meta checkpoint %s not exists' % meta_resume)
         else:
             meta_dict = torch.load(meta_resume)
-            scaler.load_state_dict(meta_dict['AMP_SCALER'])
+            if scaler and meta_dict.get('AMP_SCALER', None):
+                scaler.load_state_dict(meta_dict['AMP_SCALER'])
             task.start_epoch = meta_dict['EPOCH']
 
             if isinstance(opt, dict):

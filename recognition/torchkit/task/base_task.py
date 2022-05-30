@@ -4,6 +4,7 @@ import logging
 from collections import OrderedDict
 import torch
 import torch.optim as optim
+import torch.cuda.amp as amp
 import torch.distributed as dist
 import torch.nn.init as init
 from torch.utils.data import DataLoader
@@ -62,6 +63,7 @@ class BaseTask(object):
         self.heads = OrderedDict()
         self.summary = OrderedDict()
         self.log_buffer = OrderedDict()
+        self.scaler = amp.GradScaler() if self.amp else None
 
         # parsing DATASETS in config yaml
         for branch in self.cfg['DATASETS']:
@@ -233,14 +235,15 @@ class BaseTask(object):
             meta_dict = {
                 'EPOCH': epoch,
                 'BACKBONE_OPT': backbone_opt.state_dict(),
-                'AMP_SCALER': self.scaler.state_dict()
             }
         else:
             meta_dict = {
                 'EPOCH': epoch,
                 'OPTIMIZER': self.opt.state_dict(),
-                "AMP_SCALER": self.scaler.state_dict()
             }
+        if self.amp:
+            meta_dict["AMP_SCALER"] = self.scaler.state_dict()
+
         CkptSaver.save_meta(meta_dict, self.model_root, epoch, self.rank)
         logging.info("Save checkpoint at epoch %d ..." % epoch)
 

@@ -138,7 +138,6 @@ class TrainTask(BaseTask):
         self.make_model()
         self.loss = get_loss('DistCrossEntropy').cuda()
         self.opt = self.get_optimizer()
-        self.scaler = amp.GradScaler()
         self.register_hooks()
         self.pfc = self.cfg['HEAD_NAME'] == 'PartialFC'
 
