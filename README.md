@@ -8,11 +8,12 @@ Some of the algorithms are self-developed, and we believe the released codes ben
 This project consists of several modules: **Face Recognition**, **Face Security** and **Face Quality**.
 
 ### Face Recognition
+
 This module implements various state-of-art algorithms for face recognition.
 
 #### Paper List:
 
-**`2022.6`**: `Evaluation-oriented knowledge distillation for deep face recognition` accepted by **CVPR2022**.
+**`2022.6`**: `Evaluation-oriented knowledge distillation for deep face recognition` accepted by **CVPR2022**. [[paper](https://openaccess.thecvf.com/content/CVPR2022/papers/Huang_Evaluation-Oriented_Knowledge_Distillation_for_Deep_Face_Recognition_CVPR_2022_paper.pdf)]
 
 **`2021.3`**: `Consistent Instance False Positive Improves Fairness in Face Recognition` accepted by **CVPR2021**. [[paper](https://arxiv.org/abs/2106.05519)]
 
@@ -23,6 +24,7 @@ This module implements various state-of-art algorithms for face recognition.
 **`2020.3`**: `Curricularface: adaptive curriculum learning loss for deep face recognition` has been accepted by **CVPR2020**. [[paper](https://arxiv.org/abs/2004.00288)]
 
 ### Face Security
+
 This module implements various state-of-art algorithms for face security.
 
 #### Paper List:
