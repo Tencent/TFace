@@ -123,12 +123,12 @@ class FASDataset(Dataset):
             block_size = int((img.shape[1]) / self.grid_size)
             y = int(n / self.grid_size)
             x = n % self.grid_size
-            tile = img[:,y*block_size:(y+1)*block_size,x*block_size:(x+1)*block_size]
+            tile = img[:, y*block_size:(y+1)*block_size, x*block_size:(x+1)*block_size]
         else:
             block_size = int((img.shape[1]) / self.grid_size)
             y = int(n / self.grid_size)
             x = n % self.grid_size
-            tile = img[y*block_size:(y+1)*block_size,x*block_size:(x+1)*block_size]
+            tile = img[y*block_size:(y+1)*block_size, x*block_size:(x+1)*block_size]
         return tile
 
     def _stack_together(self, img, img_tiles):

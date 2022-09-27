@@ -69,7 +69,7 @@ class TrainTask(BaseTask):
 
                 t_features_general = torch.cat([x[0] for x in features_gather], dim=0)
                 t_features_balance = torch.cat([x[1] for x in features_gather], dim=0)
-            
+
             s_features = backbone(inputs)
             features_gather = AllGather(s_features, self.world_size)
             features_gather = [torch.split(x, splits) for x in features_gather]
@@ -131,7 +131,7 @@ class TrainTask(BaseTask):
                 head_opt.step()
 
             cost = t.get_duration()
-            self.update_log_buffer({'time_cost': cost})      
+            self.update_log_buffer({'time_cost': cost})
 
             # call hook function after_train_iter
             self.call_hook("after_train_iter", step, epoch)

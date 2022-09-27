@@ -3,7 +3,7 @@ import torch.nn as nn
 import torch.nn.functional as F
 
 
-class Similarity_perserving(nn.Module):
+class SimPerserving(nn.Module):
     """ Similarity-Preserving Knowledge Distillation, ICCV2019
     """
 

@@ -1,0 +1,60 @@
+SEED: 1337 # random seed for reproduce results
+DATA_ROOT: '' # to fill, the parent root where your train/val/test data are stored
+INDEX_ROOT: '' # to fill
+DATASETS: # the dataset index name
+  - name: # to fill, the dataset name
+    batch_size: 64
+    weight: 1.0
+    scale: 64
+    margin: 0.5
+
+BACKBONE_RESUME: ""
+HEAD_RESUME: ""
+META_RESUME: ""
+
+INPUT_SIZE: [ 112, 112 ]
+BACKBONE_NAME: 'IR_18' # IR_50
+EMBEDDING_SIZE: 512 # feature dimension
+
+MODEL_ROOT: './ckpt/' # the root to buffer your checkpoints
+LOG_ROOT: './tensorboard' # the root to log your train/val status
+
+DIST_FC: true
+HEAD_NAME: "ArcFace" # support:  ['ArcFace', 'CurricularFace', 'CosFace']
+LOSS_NAME: 'DistCrossEntropy' # support: ['DistCrossEntropy', 'Softmax']
+
+RGB_MEAN: [ 0.5, 0.5, 0.5 ]
+RGB_STD: [ 0.5, 0.5, 0.5 ]
+
+LRS: [ 0.1, 0.01, 0.001, 0.0001 ]
+WARMUP_STEP: -1
+STAGES: [ 10, 18, 22 ]
+
+START_EPOCH: 0
+NUM_EPOCH: 24
+SAVE_EPOCHS: [ 16, 20, 24 ]
+
+WEIGHT_DECAY: 0.0005
+MOMENTUM: 0.9
+
+WORLD_SIZE: 1
+RANK: 0
+LOCAL_RANK: 0
+DIST_BACKEND: 'nccl'
+DIST_URL: 'env://'
+
+NUM_WORKERS: 8
+
+AMP: false # fp16 for backbone
+
+
+# DuetFace configurations
+MODE: INT                                   # mode of training, support: RGB (baseline), INT
+SUB_CHS: [ 0, 1, 2, 3, 4, 5, 8, 9, 16, 24 ] # channels assigned to clients
+SUB_BACKBONE_NAME: 'MobileFaceNet'          # client-side backbone
+FEATURE_SIZE: 512                           # output feature size of server-side model
+SUB_FEATURE_SIZE: 512                       # feature size of client-side model
+SUB_WARMUP_STEP: 0                          # pre-training steps of client-side model, set to 0 if load checkpoint
+LOAD_CKPT: true                             # for end-to-end training, set to true to load following checkpoints
+CKPT_PATH: ''                               # to fill, checkpoint path of pre-trained client-side model
+LANDMARK_CKPT_PATH: ''                      # to fill, checkpoint path of PFLD facial landmark detector

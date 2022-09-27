@@ -18,7 +18,7 @@ def create_label2index(dataset):
 class BalancedBatchSampler(Sampler):
     """ BalancedBatchSampler class
         Each batch includes `general_batch_size` general samples and `balanced_batch_size` balanced samples,
-        general samples are directly randomly sampled, But balanced samples means picking `subsample_size` 
+        general samples are directly randomly sampled, But balanced samples means picking `subsample_size`
         samples for each label.
     """
     def __init__(self, labels2index, general_batch_size,
@@ -36,7 +36,7 @@ class BalancedBatchSampler(Sampler):
             self.samples.extend(inds)
 
     def __iter__(self):
-        for i in range(self.__len__()):
+        for _ in range(self.__len__()):
             inds = []
             # random sample
             random_samples = random.sample(self.samples, self.general_batch_size)

@@ -3,12 +3,12 @@ import torch.nn as nn
 import torch.nn.functional as F
 
 
-class Cosine_distance(nn.Module):
+class CosineDistance(nn.Module):
     """ Feature-Feature cosine distance
     """
 
     def __init__(self):
-        super(Cosine_distance, self).__init__()
+        super(CosineDistance, self).__init__()
 
     def forward(self, f_s, f_t):
         batch_size = f_s.size(0)
