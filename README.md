@@ -12,11 +12,12 @@ This module implements various state-of-art algorithms for face recognition.
 
 #### Paper List:
 
-**`2022.9`**: `Privacy-Preserving Face Recognition with Learnable Privacy Budgets in Frequency Domain` accpted by **ECCV2022**.
+**`2022.9`**: `Privacy-Preserving Face Recognition with Learnable Privacy Budgets in Frequency Domain` accpted by **ECCV2022**. 
+[[paper](https://arxiv.org/abs/2207.07316)]
 
-**`2022.9`**: `DuetFace: Collaborative Privacy-Preserving Face Recognition via Channel Splitting in the Frequency Domain` accepted by **ACMMM2022**.
+**`2022.9`**: `DuetFace: Collaborative Privacy-Preserving Face Recognition via Channel Splitting in the Frequency Domain` accepted by **ACMMM2022**. [[paper](https://dl.acm.org/doi/abs/10.1145/3503161.3548303)]
 
-**`2022.6`**: `Evaluation-oriented knowledge distillation for deep face recognition` accepted by **CVPR2022**.
+**`2022.6`**: `Evaluation-oriented knowledge distillation for deep face recognition` accepted by **CVPR2022**. [[paper](https://openaccess.thecvf.com/content/CVPR2022/papers/Huang_Evaluation-Oriented_Knowledge_Distillation_for_Deep_Face_Recognition_CVPR_2022_paper.pdf)]
 
 **`2021.3`**: `Consistent Instance False Positive Improves Fairness in Face Recognition` accepted by **CVPR2021**. [[paper](https://arxiv.org/abs/2106.05519)]
 
