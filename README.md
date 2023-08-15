@@ -5,7 +5,7 @@
 TFace: A trusty face analysis research platform developed by Tencent Youtu Lab. It provides a high-performance distributed training framework and releases our efficient methods implementations.
 Some of the algorithms are self-developed, and we believe the released codes benefits researchers to follow.
 
-This project consists of several modules: **Face Recognition**, **Face Security** and **Face Quality**.
+This project consists of several modules: **Face Recognition**, **Face Security**, **Face Quality** and **Facial Attribute**.
 
 ### Face Recognition
 This module implements various state-of-art algorithms for face recognition.
@@ -65,3 +65,11 @@ This module implements the SDD-FIQA algorithm for face quality.
 #### Paper List:
 
 **`2021.3`**: `SDD-FIQA: Unsupervised Face Image Quality Assessment with Similarity Distribution Distance` accepted by **CVPR2021**. [[paper](https://arxiv.org/abs/2103.05977)]
+
+### Facial Attribute
+
+This module implements the M3DFEL algorithm for facial attribute.
+
+#### Paper List:
+
+**`2023.6`**: ` Rethinking the Learning Paradigm for Dynamic Facial Expression Recognition` accepted by **CVPR2023**. [[paper](https://openaccess.thecvf.com/content/CVPR2023/papers/Wang_Rethinking_the_Learning_Paradigm_for_Dynamic_Facial_Expression_Recognition_CVPR_2023_paper.pdf)]
