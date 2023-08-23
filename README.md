@@ -12,7 +12,7 @@ This module implements various state-of-art algorithms for face recognition.
 
 #### Paper List:
 
-**`2022.9`**: `Privacy-Preserving Face Recognition with Learnable Privacy Budgets in Frequency Domain` accpted by **ECCV2022**. 
+**`2022.9`**: `Privacy-Preserving Face Recognition with Learnable Privacy Budgets in Frequency Domain` accepted by **ECCV2022**. 
 [[paper](https://arxiv.org/abs/2207.07316)]
 
 **`2022.9`**: `DuetFace: Collaborative Privacy-Preserving Face Recognition via Channel Splitting in the Frequency Domain` accepted by **ACMMM2022**. [[paper](https://dl.acm.org/doi/abs/10.1145/3503161.3548303)]
