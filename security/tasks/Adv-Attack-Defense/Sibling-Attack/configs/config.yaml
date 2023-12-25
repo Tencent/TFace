@@ -1,0 +1,15 @@
+attack:
+  gpu: 0
+  outer_loops: 200
+  alpha: 0.01
+  eps: 0.15
+  gamma: 0.1
+  inner_loops: 5
+
+dataset:
+  dataset_name: celebaHQ
+  dataset_dir: datasets/celebaHQ-select-aligned
+  dataset_txt: datasets/celebaHQ-select-aligned-label.txt
+  input_size: [112, 112]
+  mean: [0.5, 0.5, 0.5]
+  std: [0.5, 0.5, 0.5]
