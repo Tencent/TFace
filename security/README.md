@@ -9,6 +9,8 @@ This module consists of several parts: 1. face anti-spoofing methods, 2. face fo
 
 ## Recent News
 
+**`2023.09`**:  `Sibling-Attack: Rethinking Transferable Adversarial Attacks against Face Recognition` accepted by **CVPR2023**
+
 **`2021.12`**:  `Dual Contrastive Learning for General Face Forgery Detection` accepted by **AAAI2022**
 
 **`2021.12`**:  `Exploiting Fine-grained Face Forgery Clues via Progressive Enhancement Learning` accepted by **AAAI2022**
@@ -50,3 +52,4 @@ This module consists of several parts: 1. face anti-spoofing methods, 2. face fo
 ### Adversarial attack task
 
 - **Adv-Makeup:** `./tasks/Adv-Attack-Defense/Adv-Makeup`
+- **Sibling-Attack:** `./tasks/Adv-Attack-Defense/Sibling-Attack`

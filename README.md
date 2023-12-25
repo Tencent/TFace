@@ -32,6 +32,8 @@ This module implements various state-of-art algorithms for face security.
 
 #### Paper List:
 
+**`2023.09`**:  `Sibling-Attack: Rethinking Transferable Adversarial Attacks against Face Recognition` accepted by **CVPR2023**
+
 **`2021.12`**:  `Dual Contrastive Learning for General Face Forgery Detection` accepted by **AAAI2022**
 
 **`2021.12`**:  `Exploiting Fine-grained Face Forgery Clues via Progressive Enhancement Learning` accepted by **AAAI2022**
