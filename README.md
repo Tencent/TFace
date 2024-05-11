@@ -12,6 +12,10 @@ This module implements various state-of-art algorithms for face recognition.
 
 #### Paper List:
 **`2024.03`**: `Privacy-Preserving Face Recognition Using Trainable Feature Subtraction` accpted by **CVPR2024**.
+[[paper](https://arxiv.org/abs/2403.12457)]
+
+**`2023.10`**: `Privacy-Preserving Face Recognition Using Random Frequency Components` accpted by **ICCV2023**.
+[[paper](https://arxiv.org/abs/2308.10461)]
 
 **`2022.9`**: `Privacy-Preserving Face Recognition with Learnable Privacy Budgets in Frequency Domain` accepted by **ECCV2022**. 
 [[paper](https://arxiv.org/abs/2207.07316)]
