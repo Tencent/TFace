@@ -17,7 +17,8 @@ from torchkit.loss import get_loss
 from torchkit.task import BaseTask
 from torchkit.head import get_head
 from torchkit.util import get_class_split
-from utils import NoisyActivation, images_to_batch, get_model
+from torchkit.backbone import get_model
+from utils import NoisyActivation, images_to_batch
 
 logging.basicConfig(stream=sys.stdout, level=logging.INFO, format='%(asctime)s: %(message)s')
 
@@ -33,7 +34,7 @@ class TrainTask(BaseTask):
         """
         backbone_name = self.cfg['BACKBONE_NAME']
         backbone_model = get_model(backbone_name)
-        self.backbone = backbone_model(self.input_size)
+        self.backbone = backbone_model(self.input_size, input_channel=189)
         self.backbone.cuda()
         logging.info("{} Backbone Generated".format(backbone_name))
 
@@ -92,35 +93,16 @@ class TrainTask(BaseTask):
             inputs = inputs.detach()
             inputs = noise_model(inputs)
 
-            if self.amp:
-                with amp.autocast():
-                    features = backbone(inputs)
-                features = features.float()
-            else:
-                features = backbone(inputs)
-
-            # gather features
-            features_gather = AllGather(features, self.world_size)
-            features_gather = [torch.split(x, batch_sizes) for x in features_gather]
-            all_features = []
-            for i in range(len(batch_sizes)):
-                all_features.append(torch.cat([x[i] for x in features_gather], dim=0).cuda())
-
-            # gather labels
-            with torch.no_grad():
-                labels_gather = AllGather(labels, self.world_size)
-            labels_gather = [torch.split(x, batch_sizes) for x in labels_gather]
-            all_labels = []
-            for i in range(len(batch_sizes)):
-                all_labels.append(torch.cat([x[i] for x in labels_gather], dim=0).cuda())
-
+            all_features, all_labels = self.backbone_forward(backbone, inputs, labels, batch_sizes)
             losses = []
             for i in range(len(batch_sizes)):
                 # PartialFC need update optimizer state in training process
-                if self.pfc:
-                    outputs, labels, original_outputs = heads[i](all_features[i], all_labels[i], head_opts[i])
+                if self.pfc: 
+                    outputs, labels, original_outputs = self.partialfc_head_forward(heads[i], all_features[i],
+                                                                                    all_labels[i], head_opts[i])
                 else:
-                    outputs, labels, original_outputs = heads[i](all_features[i], all_labels[i])
+                    outputs, labels, original_outputs = self.general_head_forward(heads[i], all_features[i],
+                                                                                  all_labels[i])
 
                 loss = self.loss(outputs, labels) * self.branch_weights[i]
                 losses.append(loss)
@@ -150,26 +132,9 @@ class TrainTask(BaseTask):
             # compute loss
             total_loss = sum(losses)
             # compute gradient and do SGD
-            backbone_opt.zero_grad()
-            noise_opt.zero_grad()
-            for head_opt in head_opts:
-                head_opt.zero_grad()
-
-            # Automatic Mixed Precision setting
-            if self.amp:
-                self.scaler.scale(total_loss).backward()
-                self.scaler.step(backbone_opt)
-                self.scaler.step(noise_opt)
-                for head_opt in head_opts:
-                    self.scaler.step(head_opt)
-                self.scaler.update()
-            else:
-                total_loss.backward()
-                backbone_opt.step()
-                noise_opt.step()
-                for head_opt in head_opts:
-                    head_opt.step()
-
+            total_opts = [backbone_opt, noise_opt] + head_opts
+            self.backward_and_update(total_loss, total_opts, self.scaler)
+            
             # PartialFC need update weight and weight_norm manually
             if self.pfc:
                 for head in heads:

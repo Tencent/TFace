@@ -1,6 +1,6 @@
 SEED: 1337 # random seed for reproduce results
-DATA_ROOT: '/youtu-pangu-recognition/train_tfrecord' # the parent root where your train/val/test data are stored
-INDEX_ROOT: '/youtu-pangu-recognition/train_index'
+DATA_ROOT: '' # to fill, the parent root where your train/val/test data are stored
+INDEX_ROOT: ''  #to fill
 DATASETS:  # the dataset index name
     - name: TFR-refined_ms1m_112_shuf #TFR-vggface2_shuf
       batch_size: 64
@@ -14,7 +14,7 @@ META_RESUME: ""
 
 # BACKBONE_NAME: 'EfficientNetB0'
 INPUT_SIZE: [112, 112] # support: [112, 112] and [224, 224]
-BACKBONE_NAME: 'IR_50'
+BACKBONE_NAME: 'IR_50' # Must be a model of the IR series
 EMBEDDING_SIZE: 512 # feature dimension
 
 MODEL_ROOT: './ckpt/' # the root to buffer your checkpoints

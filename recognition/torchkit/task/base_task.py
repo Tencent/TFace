@@ -15,6 +15,7 @@ from ..head import get_head
 from ..hooks import CheckpointHook, LogHook, SummaryHook, LearningRateHook
 from ..util import load_config, get_class_split
 from ..util import separate_resnet_bn_paras
+from ..util import AllGather
 from ..util import CkptLoader, CkptSaver
 from ..data import MultiDataset, MultiDistributedSampler
 
@@ -261,7 +262,56 @@ class BaseTask(object):
         meta_resume = self.cfg.get('META_RESUME', '')
         if meta_resume != '':
             CkptLoader.load_meta(self.opt, self.scaler, self, meta_resume)
-
+    
+    def backbone_forward(self, backbone, inputs, labels, batch_sizes):
+        """ General distributed backbone forward
+        """
+        if self.amp:
+            with amp.autocast():
+                features = backbone(inputs)
+            features = features.float()
+        else:
+            features = backbone(inputs)
+        # gather features
+        features_gather = AllGather(features, self.world_size)
+        features_gather = [torch.split(x, batch_sizes) for x in features_gather]
+        all_features = []
+        for i in range(len(batch_sizes)):
+            all_features.append(torch.cat([x[i] for x in features_gather], dim=0).cuda())
+                    # gather labels
+        with torch.no_grad():
+            labels_gather = AllGather(labels, self.world_size)
+        labels_gather = [torch.split(x, batch_sizes) for x in labels_gather]
+        all_labels = []
+        for i in range(len(batch_sizes)):
+            all_labels.append(torch.cat([x[i] for x in labels_gather], dim=0).cuda())
+        return all_features, all_labels
+    
+    def general_head_forward(self, head, feature, label):
+        """ General head forward
+        """
+        outputs, labels, original_outputs = head(feature, label)
+        return outputs, labels, original_outputs
+    
+    def partialfc_head_forward(self, head, feature, label, head_opt):
+        """ head forward for partial fc
+        """
+        outputs, labels, original_outputs = head(feature, label, head_opt)
+        return outputs, labels, original_outputs
+    
+    def backward_and_update(self, loss, opts, scaler):
+        for opt in opts:
+            opt.zero_grad()
+        if self.amp:
+            scaler.scale(loss).backward()
+            for opt in opts:
+                scaler.step(opt)
+            scaler.update()
+        else:
+            loss.backward()
+            for opt in opts:
+                opt.step()
+                      
     def loop_step(self, epoch):
         """ Implemented by sub class, which run in every training step
         """

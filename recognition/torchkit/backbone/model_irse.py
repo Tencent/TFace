@@ -139,7 +139,7 @@ def get_blocks(num_layers):
 
 
 class Backbone(Module):
-    def __init__(self, input_size, num_layers, mode='ir'):
+    def __init__(self, input_size, num_layers, mode='ir', input_channel=3):
         """ Args:
             input_size: input_size of backbone
             num_layers: num_layers of backbone
@@ -152,7 +152,7 @@ class Backbone(Module):
             "num_layers should be 18, 34, 50, 100 or 152"
         assert mode in ['ir', 'ir_se'], \
             "mode should be ir or ir_se"
-        self.input_layer = Sequential(Conv2d(3, 64, (3, 3), 1, 1, bias=False),
+        self.input_layer = Sequential(Conv2d(input_channel, 64, (3, 3), 1, 1, bias=False),
                                       BatchNorm2d(64), PReLU(64))
         blocks = get_blocks(num_layers)
         if num_layers <= 100:
@@ -196,81 +196,81 @@ class Backbone(Module):
         return x
 
 
-def IR_18(input_size):
+def IR_18(input_size, **kwargs):
     """ Constructs a ir-18 model.
     """
-    model = Backbone(input_size, 18, 'ir')
+    model = Backbone(input_size, 18, 'ir', **kwargs)
 
     return model
 
 
-def IR_34(input_size):
+def IR_34(input_size, **kwargs):
     """ Constructs a ir-34 model.
     """
-    model = Backbone(input_size, 34, 'ir')
+    model = Backbone(input_size, 34, 'ir', **kwargs)
 
     return model
 
 
-def IR_50(input_size):
+def IR_50(input_size, **kwargs):
     """ Constructs a ir-50 model.
     """
-    model = Backbone(input_size, 50, 'ir')
+    model = Backbone(input_size, 50, 'ir', **kwargs)
 
     return model
 
 
-def IR_101(input_size):
+def IR_101(input_size, **kwargs):
     """ Constructs a ir-101 model.
     """
-    model = Backbone(input_size, 100, 'ir')
+    model = Backbone(input_size, 100, 'ir', **kwargs)
 
     return model
 
 
-def IR_152(input_size):
+def IR_152(input_size, **kwargs):
     """ Constructs a ir-152 model.
     """
-    model = Backbone(input_size, 152, 'ir')
+    model = Backbone(input_size, 152, 'ir', **kwargs)
 
     return model
 
 
-def IR_200(input_size):
+def IR_200(input_size, **kwargs):
     """ Constructs a ir-200 model.
     """
-    model = Backbone(input_size, 200, 'ir')
+    model = Backbone(input_size, 200, 'ir', **kwargs)
 
     return model
 
 
-def IR_SE_50(input_size):
+def IR_SE_50(input_size, **kwargs):
     """ Constructs a ir_se-50 model.
     """
-    model = Backbone(input_size, 50, 'ir_se')
+    model = Backbone(input_size, 50, 'ir_se', **kwargs)
 
     return model
 
 
-def IR_SE_101(input_size):
+def IR_SE_101(input_size, **kwargs):
     """ Constructs a ir_se-101 model.
     """
-    model = Backbone(input_size, 100, 'ir_se')
+    model = Backbone(input_size, 100, 'ir_se', **kwargs)
 
     return model
 
 
-def IR_SE_152(input_size):
+def IR_SE_152(input_size, **kwargs):
     """ Constructs a ir_se-152 model.
     """
-    model = Backbone(input_size, 152, 'ir_se')
+    model = Backbone(input_size, 152, 'ir_se', **kwargs)
 
     return model
 
 
-def IR_SE_200(input_size):
+def IR_SE_200(input_size, **kwargs):
     """ Constructs a ir_se-200 model.
     """
-    model = Backbone(input_size, 200, 'ir_se')
+    model = Backbone(input_size, 200, 'ir_se', **kwargs)
 
     return model
