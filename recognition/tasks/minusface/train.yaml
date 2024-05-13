@@ -1,0 +1,56 @@
+SEED: 1337 # random seed for reproduce results
+DATA_ROOT: '' # [fill in this blank] the parent directory where your train/val/test data are stored
+INDEX_ROOT: '' # [fill in this blank] the parent directory for index
+DATASETS:
+  - name: # [fill in this blank] the name of your dataset
+    batch_size: 64
+    weight: 1.0
+    scale: 64
+    margin: 0.5
+
+BACKBONE_RESUME: ""
+HEAD_RESUME: ""
+META_RESUME: ""
+
+INPUT_SIZE: [ 112, 112 ]
+BACKBONE_NAME: 'IR_18' # support: ['IR_18', 'IR_50']
+EMBEDDING_SIZE: 512
+
+MODEL_ROOT: './ckpt/' # the root to buffer your checkpoints
+LOG_ROOT: './tensorboard' # the root to log your train/val status
+
+DIST_FC: true
+HEAD_NAME: "ArcFace" # support:  ['ArcFace', 'CurricularFace', 'CosFace']
+LOSS_NAME: 'DistCrossEntropy' # support: ['DistCrossEntropy', 'Softmax']
+
+RGB_MEAN: [ 0.5, 0.5, 0.5 ] # for normalize inputs to [-1, 1]
+RGB_STD: [ 0.5, 0.5, 0.5 ]
+
+LRS: [ 0.01, 0.001, 0.0001, 0.00001 ]
+WARMUP_STEP: -1
+STAGES: [ 10, 18, 22 ]
+
+START_EPOCH: 0 # start epoch
+NUM_EPOCH: 24 # total epoch number
+SAVE_EPOCHS: [ 1, 10, 16, 20, 24 ]
+
+WEIGHT_DECAY: 0.0005 # do not apply to batch_norm parameters
+MOMENTUM: 0.9
+
+WORLD_SIZE: 1
+RANK: 0
+LOCAL_RANK: 0
+DIST_BACKEND: 'nccl'
+DIST_URL: 'env://'
+
+NUM_WORKERS: 8
+
+AMP: false # fp16 for backbone
+
+# MinusFace
+METHOD: MinusFace
+TASK: stage1 # toy, stage1, stage2
+NUM_AUG: 3 # multiplier for data augmentation
+TASK_BACKBONE: 'IR_18' # IR_18, IR_50
+PRETRAIN_CKPT: '' # [fill in this blank] to train the recognition model requires pretrained MinusFace checkpoint
+TASK_VER: 3

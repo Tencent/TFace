@@ -2,31 +2,6 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 from torchjpeg import dct
-from model_irse_dct import IR_18, IR_34, IR_50, IR_101, IR_152, IR_200
-
-_model_dict = {
-    'IR_18': IR_18,
-    'IR_34': IR_34,
-    'IR_50': IR_50,
-    'IR_101': IR_101,
-    'IR_152': IR_152,
-    'IR_200': IR_200,
-}
-
-
-def get_model(key):
-    """ Get different backbone network by key,
-        support ResNet50, ResNet_101, ResNet_152
-        IR_18, IR_34, IR_50, IR_101, IR_152, IR_200,
-        IR_SE_50, IR_SE_101, IR_SE_152, IR_SE_200,
-        EfficientNetB0, EfficientNetB1.
-        MobileFaceNet, FBNets.
-    """
-    if key in _model_dict.keys():
-        return _model_dict[key]
-    else:
-        raise KeyError("not support model {}".format(key))
-
 
 def images_to_batch(x):
     x = (x + 1) / 2 * 255

@@ -5,6 +5,10 @@ Face Recognition module consists of several parts: 1.datasets and samplers, 2. b
 <img src="doc/framework.png" title="framework" /> 
 
 ## Recent News
+**`2024.03`**: `Privacy-Preserving Face Recognition Using Trainable Feature Subtraction` accpted by **CVPR2024**.
+
+**`2023.10`**: `Privacy-Preserving Face Recognition Using Random Frequency Components` accpted by **ICCV2023**.
+
 **`2022.9`**: `Privacy-Preserving Face Recognition with Learnable Privacy Budgets in Frequency Domain` accpted by **ECCV2022**.
 
 **`2022.9`**: `DuetFace: Collaborative Privacy-Preserving Face Recognition via Channel Splitting in the Frequency Domain` accepted by **ACMMM2022**.

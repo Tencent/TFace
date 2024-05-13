@@ -735,9 +735,11 @@ class FBNetBuilder(object):
         self.dw_skip_bn = dw_skip_bn
         self.dw_skip_relu = dw_skip_relu
 
-    def add_first(self, stage_info, input_size=[112, 112], dim_in=3, pad=True):
+    def add_first(self, stage_info, input_size=None, dim_in=3, pad=True):
         # stage_info: [c, s, kernel]
         assert len(stage_info) >= 2
+        if input_size is None:
+            input_size = [112, 112]
         channel = stage_info[0]
         stride = stage_info[1]
         out_depth = self._get_divisible_width(int(channel * self.width_ratio))
@@ -840,9 +842,11 @@ class FBNet(nn.Module):
     """FBNet
     """
     def __init__(
-        self, builder, arch_def, dim_in, input_size=[112, 112]
+        self, builder, arch_def, dim_in, input_size=None
     ):
         super(FBNet, self).__init__()
+        if input_size is None:
+            input_size = [112, 112]
         assert input_size[0] in [112, 224], \
             "input_size should be [112, 112] or [224, 224]"
         self.first = builder.add_first(arch_def["first"], input_size=input_size, dim_in=dim_in)
