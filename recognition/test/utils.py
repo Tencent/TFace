@@ -1,3 +1,4 @@
+import os
 import numpy as np
 from numpy import linalg as line
 import sklearn
@@ -8,6 +9,63 @@ import torch
 import torchvision.transforms as transforms
 
 
+def get_val_pair_from_bin(path, name):
+    """ read data for bin files
+    """
+    import pickle
+    import cv2
+    path = os.path.join(path, name)
+    bins, issame_list = pickle.load(open(path, 'rb'), encoding='bytes')
+    images = []
+    for i in range(len(issame_list)*2):
+        _bin = bins[i]
+        # image = Image.frombytes('RGB', (112, 112), _bin, 'raw')
+        # image = mx.image.imdecode(_bin)
+        image = np.frombuffer(_bin, dtype=np.uint8)
+        image = cv2.imdecode(image, cv2.IMREAD_COLOR)
+        image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+        img = np.transpose(image, axes=(2, 0, 1))
+        img = img.astype(np.float32)
+        img = (img / 255. - 0.5) / 0.5
+        images.append(img)
+    issame_list = np.array(issame_list)
+    print(len(images))
+    return images, issame_list
+
+
+def get_val_data_from_bin(data_path):
+    lfw, lfw_issame = get_val_pair_from_bin(data_path, 'lfw.bin')
+    cfp_fp, cfp_fp_issame = get_val_pair_from_bin(data_path, 'cfp_fp.bin')
+    agedb_30, agedb_30_issame = get_val_pair_from_bin(data_path, 'agedb_30.bin')
+    calfw, calfw_issame = get_val_pair_from_bin(data_path, 'calfw.bin')
+    cplfw, cplfw_issame = get_val_pair_from_bin(data_path, 'cplfw.bin')
+    return (lfw, cfp_fp, agedb_30, cplfw, calfw,
+            lfw_issame, cfp_fp_issame, agedb_30_issame,
+            cplfw_issame, calfw_issame)
+
+
+def get_val_pair(path, name):
+    """ read data from boclz dir
+    """
+    import bcolz
+    carray = bcolz.carray(rootdir=os.path.join(path, name), mode='r')
+    issame = np.load('{}/{}_list.npy'.format(path, name))
+
+    return carray, issame
+
+
+def get_val_data(data_path):
+    lfw, lfw_issame = get_val_pair(data_path, 'lfw')
+    cfp_fp, cfp_fp_issame = get_val_pair(data_path, 'cfp_fp')
+    agedb_30, agedb_30_issame = get_val_pair(data_path, 'agedb_30')
+    calfw, calfw_issame = get_val_pair(data_path, 'calfw')
+    cplfw, cplfw_issame = get_val_pair(data_path, 'cplfw')
+
+    return (lfw, cfp_fp, agedb_30, cplfw, calfw,
+            lfw_issame, cfp_fp_issame, agedb_30_issame,
+            cplfw_issame, calfw_issame)
+    
+    
 def de_preprocess(tensor):
     """preprocess function
     """
