@@ -161,7 +161,7 @@ Test results for different backbones and different devices：
 
 
 ## Acknowledgement
-This repo is modified and adapted on these great repositories, we thank theses authors a lot for their greate efforts.
+This repo is modified and adapted on these great repositories, we thank these authors a lot for their greate efforts.
 * [cavaface.pytorch](https://github.com/cavalleria/cavaface.pytorch)
 * [face.evoLVe.PyTorch](https://github.com/ZhaoJ9014/face.evoLVe.PyTorch) 
 * [insightface](https://github.com/deepinsight/insightface)
