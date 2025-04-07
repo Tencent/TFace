@@ -1,0 +1,27 @@
+constants:
+  input_channels: 3
+  n_classes: 0
+  image_size: 128
+
+latent_diffusion: True
+
+dataset:
+  _target_:  utils.CASIA_dataset.SamplesWithEmbeddingsFileDataset
+
+  samples_root: " "
+  embeddings_file_path: "dataset/elastic_embed.npy" 
+  images_name_file_path: "dataset/image_names.pkl" 
+  sample_file_ending: ".jpg"
+  sample_loader:
+    _target_: utils.CASIA_dataset.PILImageLoader
+  sample_transform:
+    _target_: torchvision.transforms.Compose
+    transforms:
+      - _target_: torchvision.transforms.Resize
+        size:
+        - 128
+        - 128
+      - _target_: torchvision.transforms.ToTensor
+      - _target_: torchvision.transforms.RandomHorizontalFlip
+        p: 0.5
+                                                   

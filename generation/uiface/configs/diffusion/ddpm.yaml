@@ -1,0 +1,12 @@
+_target_: diffusion.ddpm.DenoisingDiffusionProbabilisticModel
+eps_model: ${model}
+T: 1000
+
+schedule_type: "linear"         # ['linear', 'cosine', 'cosine_warped]
+
+schedule_k: 1
+schedule_beta_min: 0.000        # if this is too high, noise is added too fast
+schedule_beta_max: 0.100        # if this is too high, the cosine schedule does not work
+
+criterion:
+  _target_: torch.nn.MSELoss
