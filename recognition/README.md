@@ -5,6 +5,8 @@ Face Recognition module consists of several parts: 1.datasets and samplers, 2. b
 <img src="doc/framework.png" title="framework" /> 
 
 ## Recent News
+**`2024.12`**: `SlerpFace: Face Template Protection via Spherical Linear Interpolation` accpted by **AAAI2025**.
+
 **`2024.03`**: `Privacy-Preserving Face Recognition Using Trainable Feature Subtraction` accpted by **CVPR2024**.
 
 **`2023.10`**: `Privacy-Preserving Face Recognition Using Random Frequency Components` accpted by **ICCV2023**.
