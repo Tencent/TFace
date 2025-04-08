@@ -1,0 +1,34 @@
+defaults:
+  - _self_
+  - override hydra/hydra_logging: disabled
+  - override hydra/job_logging: disabled
+checkpoint:
+  path: "  " 
+  global_step: null
+  use_non_ema: True
+
+diffusion_cfg_path: "./configs/model/unet_cond_ca_cpd25_uncond20.yaml" 
+
+VQEncoder_path: ""
+VQDecoder_path: ""
+
+sampling:
+  gpu_idx: 0
+  seed: 41
+  contexts_file : "" 
+  save_dir: " "
+  save_mode: rgb   
+  batch_size: 50           
+  n_contexts: 10000 
+  num_workers: 1
+  pin_memory: true
+  n_samples_per_context: 50
+  sample_config:
+    cfg_scale: 1.0 
+    MSE_th: 0.006
+    step_th: 500
+
+hydra:
+  output_subdir: null
+  run:
+    dir: .

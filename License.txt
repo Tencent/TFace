@@ -1,4 +1,4 @@
-Copyright (C) 2021 THL A29 Limited, a Tencent company.  All rights reserved. 
+Copyright (C) 2025 THL A29 Limited, a Tencent company.  All rights reserved. 
 
 Apache License
 Version 2.0, January 2004
@@ -88,6 +88,9 @@ Copyright 2016-2020 aio-libs collaboration.
 
 3. timm
 Copyright 2019 Ross Wightman
+
+4.pytorch_lightning
+Copyright The PyTorch Lightning team
 
 A copy of the Apache 2.0 License is included in this file.
 

@@ -11,11 +11,13 @@ This project consists of several modules: **Face Recognition**, **Face Security*
 This module implements various state-of-art algorithms for face recognition.
 
 #### Paper List:
-**`2024.03`**: `Privacy-Preserving Face Recognition Using Trainable Feature Subtraction` accpted by **CVPR2024**.
-[[paper](https://arxiv.org/abs/2403.12457)]
+**`2025.02`**: `UIFace: Unleashing Inherent Model Capabilities to Enhance Intra-Class Diversity in Synthetic Face Recognition` accpted by **ICLR2025**.[[paper](https://openreview.net/forum?id=riieAeQBJm)]
 
-**`2023.10`**: `Privacy-Preserving Face Recognition Using Random Frequency Components` accpted by **ICCV2023**.
-[[paper](https://arxiv.org/abs/2308.10461)]
+**`2024.12`**: `SlerpFace: Face Template Protection via Spherical Linear Interpolation` accpted by **AAAI2025**.[[paper](https://arxiv.org/pdf/2407.03043)]
+
+**`2024.03`**: `Privacy-Preserving Face Recognition Using Trainable Feature Subtraction` accpted by **CVPR2024**.[[paper](https://openaccess.thecvf.com/content/CVPR2024/papers/Mi_Privacy-Preserving_Face_Recognition_Using_Trainable_Feature_Subtraction_CVPR_2024_paper.pdf)]
+
+**`2023.10`**: `Privacy-Preserving Face Recognition Using Random Frequency Components` accpted by **ICCV2023**.[[paper](https://openaccess.thecvf.com/content/ICCV2023/papers/Mi_Privacy-Preserving_Face_Recognition_Using_Random_Frequency_Components_ICCV_2023_paper.pdf)]
 
 **`2022.9`**: `Privacy-Preserving Face Recognition with Learnable Privacy Budgets in Frequency Domain` accepted by **ECCV2022**. 
 [[paper](https://arxiv.org/abs/2207.07316)]
