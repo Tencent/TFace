@@ -1,7 +1,7 @@
 ## Deploy
 
 ### Introduction
-Afer finishing the train, we deploy the model based on [TNN](https://github.com/Tencent/TNN) framework. TNN is a high-performance, lightweight neural network inference framework open sourced by Tencent Youtu Lab, and supports for ARM CPU/X86 CPU/NV GPU/ devcies.
+After finishing the train, we deploy the model based on [TNN](https://github.com/Tencent/TNN) framework. TNN is a high-performance, lightweight neural network inference framework open sourced by Tencent Youtu Lab, and supports for ARM CPU/X86 CPU/NV GPU/ devcies.
 
 ### Preparation
 
