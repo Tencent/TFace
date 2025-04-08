@@ -1,12 +1,9 @@
 einops==0.6.1
-facenet_pytorch==2.5.3
 hydra-core
 matplotlib==3.7.2
-mxnet==1.9.1
 numpy==1.24.4
 omegaconf==2.3.0
 pandas==2.0.3
-Pillow
 pyeer==0.5.5
 pytorch_lightning==1.5.9
 Requests==2.31.0
