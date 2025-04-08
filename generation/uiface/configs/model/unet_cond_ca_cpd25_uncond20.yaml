@@ -1,0 +1,27 @@
+# PARAMS: 216341187 
+_target_: models.diffusion.unet.ConditionalUNet
+input_channels: 3
+initial_channels: 96
+channel_multipliers:
+  - 1
+  - 2
+  - 2
+  - 2
+is_attention:
+  - false
+  - true
+  - true
+  - true
+attention_heads: -1
+attention_head_channels: 32
+n_blocks_per_resolution: 2
+
+condition_type: "CA"                                          
+is_context_conditional: True                                  
+n_context_classes: 0                                          
+context_input_channels: 512                                   
+context_channels: 256                                         
+learn_empty_context: True                                     # add learnable embedding to the model for empty context
+context_dropout_probability: 0.25
+unconditioned_probability: 0.2
+

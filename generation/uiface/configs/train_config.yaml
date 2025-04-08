@@ -1,0 +1,60 @@
+defaults:
+  - _self_
+  - diffusion: ddpm                
+  - model: unet_cond_ca_cpd25_uncond20      
+  - dataset: CASIA_file           
+
+latent_diffusion: true
+
+constants:                      
+  seed: 0
+  image_size: -1
+  input_channels: -1
+  n_classes: 0
+
+training:
+  sample_weight_path: null
+  precision: 16
+  batch_size: 64
+  num_workers: 8
+  pin_memory: true
+  steps: 900_000
+  steps_between_sampling: 10000
+  steps_between_eval: 50000
+  steps_between_logging: 500
+  steps_of_checkpoints:
+    - 100_000
+    - 250_000
+    - 400_000
+    - 600_000
+    - 800_000
+    - 900_000
+  context_dropout: 0
+  context_permutation: 0.0
+  ema:
+    _partial_: true
+    _target_: utils.ema.EMAModel
+    inv_gamma: 1.0
+    power: 0.75
+    min_value: 0.0
+    max_value: 0.9999
+  optimizer:
+    _partial_: true
+    _target_: torch.optim.Adam
+    lr: 1e-4
+  lr_scheduler:
+    _partial_: true
+    _target_: torch.optim.lr_scheduler.CosineAnnealingWarmRestarts
+    T_0: 10_000
+    T_mult: 2
+  checkpoint:
+    restore: false
+    path: ""
+    VQEncoder: ""
+    VQDecoder: ""
+
+hydra:
+  job:
+    chdir: true
+  run:
+    dir: ./logs/${now:%Y-%m-%d}/${now:%H-%M-%S}
