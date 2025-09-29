@@ -21,7 +21,7 @@ def main():
     if not os.path.isfile(args.ckpt_path):
         print("Invalid ckpt path: %s" % args.ckpt_path)
         return
-    torch_model.load_state_dict(torch.load(args.ckpt_path))
+    torch_model.load_state_dict(torch.load(args.ckpt_path, weights_only=True))
     torch_model.eval()
     
     batch_size = 1

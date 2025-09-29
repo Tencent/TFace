@@ -65,10 +65,10 @@ class DiffusionTrainerLite(LightningLite):
     @staticmethod
     def restore_checkpoint(model, optimizer, path, lr_scheduler=None):
         model_ckpt = torch.load(
-            os.path.join(path, "checkpoints", "model.ckpt"), map_location="cpu"
+            os.path.join(path, "checkpoints", "model.ckpt"), map_location="cpu", weights_only=True
         )
         optimization_ckpt = torch.load(
-            os.path.join(path, "checkpoints", "optimization.ckpt"), map_location="cpu"
+            os.path.join(path, "checkpoints", "optimization.ckpt"), map_location="cpu", weights_only=True
         )
 
         global_step = optimization_ckpt["global_step"]
@@ -248,7 +248,7 @@ class DiffusionTrainerLite(LightningLite):
                     "checkpoints",
                     "ema_averaged_model.ckpt",
                 ),
-                map_location="cpu",
+                map_location="cpu", weights_only=True
             )
             ema_model.averaged_model.load_state_dict(ema_model_ckpt)
 

@@ -64,7 +64,7 @@ class Solver(object):
 
         # resume
         if args.resume:
-            checkpoint = torch.load(args.resume, map_location='cuda:0')
+            checkpoint = torch.load(args.resume, map_location='cuda:0',  weights_only=True)
             print("=> loaded checkpoint '{}' (epoch {})".format(
                 args.resume, checkpoint['epoch']))
             self.args.start_epoch = checkpoint['epoch'] + 1

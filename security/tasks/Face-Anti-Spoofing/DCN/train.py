@@ -250,7 +250,7 @@ class DCNTask(BaseTask):
 
     def test(self):
         ckpt_path = f'{self.cfg.exam_dir}/ckpts/model_best.pth.tar'
-        checkpoint = torch.load(ckpt_path)
+        checkpoint = torch.load(ckpt_path, weights_only=True)
 
         try:
             state_dict = {'module.' + k: w for k, w in checkpoint['state_dict'].items()}

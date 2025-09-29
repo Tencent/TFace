@@ -14,7 +14,7 @@ class CkptLoader(object):
         else:
             # For DDP trained model, it should specify map_location device in load
             device = torch.device("cuda:%d" % local_rank)
-            backbone.load_state_dict(torch.load(backbone_resume, map_location=device))
+            backbone.load_state_dict(torch.load(backbone_resume, map_location=device, weights_only=True))
             logging.info("Loading backbone checkpoint %s succeed" % backbone_resume)
 
     @staticmethod
@@ -26,7 +26,7 @@ class CkptLoader(object):
         if not path.isfile(head_resume):
             logging.info('Head checkpoint %s not exists' % head_resume)
         else:
-            pretrain_heads = torch.load(head_resume)
+            pretrain_heads = torch.load(head_resume, weights_only=True)
             for name, head in heads.items():
                 # If pretrain heads do not contain branch, skip it
                 if name not in pretrain_heads:
@@ -42,7 +42,7 @@ class CkptLoader(object):
         if not path.isfile(meta_resume):
             logging.info('Meta checkpoint %s not exists' % meta_resume)
         else:
-            meta_dict = torch.load(meta_resume)
+            meta_dict = torch.load(meta_resume, weights_only=True)
             if scaler and meta_dict.get('AMP_SCALER', None):
                 scaler.load_state_dict(meta_dict['AMP_SCALER'])
             task.start_epoch = meta_dict['EPOCH']

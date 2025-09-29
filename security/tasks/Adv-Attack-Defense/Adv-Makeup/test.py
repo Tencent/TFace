@@ -64,11 +64,11 @@ def main():
         # Pre-trained model loading
         model_id = args.epoch_steps - 1
         model_enc_dict = torch.load(args.model_dir + '/' +
-                                    target_name.split('.')[0] + '/%05d_enc.pth' % (model_id))
+                                    target_name.split('.')[0] + '/%05d_enc.pth' % (model_id), weights_only=True)
         model_dec_dict = torch.load(args.model_dir + '/' +
-                                    target_name.split('.')[0] + '/%05d_dec.pth' % (model_id))
+                                    target_name.split('.')[0] + '/%05d_dec.pth' % (model_id), weights_only=True)
         model_discr_dict = torch.load(args.model_dir + '/' +
-                                      target_name.split('.')[0] + '/%05d_discr.pth' % (model_id))
+                                      target_name.split('.')[0] + '/%05d_discr.pth' % (model_id), weights_only=True)
         # Load the params of pre-trained encoder
         model.enc.load_state_dict(model_enc_dict)
         # Load the params of pre-trained decoder

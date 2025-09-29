@@ -120,7 +120,7 @@ class LocalBaseTask(BaseTask):
             if self.cfg['TASK'] == 'stage2':
                 pretrain_backbone = MinusBackbone(mode='stage1',
                                                   recognizer=get_model(self.cfg['TASK_BACKBONE'])([112, 112]))
-                pretrain_backbone.load_state_dict(torch.load(self.cfg['PRETRAIN_CKPT']))
+                pretrain_backbone.load_state_dict(torch.load(self.cfg['PRETRAIN_CKPT'], weights_only=True))
                 pretrain_backbone.generator.mode = self.cfg['TASK']
                 generator = copy.deepcopy(pretrain_backbone.generator)
                 print('Load pretrain ckpt: ', self.cfg['PRETRAIN_CKPT'])

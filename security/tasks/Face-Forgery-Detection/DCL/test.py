@@ -26,7 +26,7 @@ def load_model(args):
     """
     if args.ckpt_path is not None:
         print(f'resume model from {args.ckpt_path}')
-        checkpoint = torch.load(args.ckpt_path)
+        checkpoint = torch.load(args.ckpt_path, weights_only=True)
         if getattr(args, 'transform', None) is None:
             args.transform = checkpoint['args'].transform
         if getattr(args, 'model', None) is None:

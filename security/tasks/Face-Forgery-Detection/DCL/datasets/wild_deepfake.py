@@ -43,12 +43,12 @@ class WildDeepfake(Dataset):
             num = self.num_test
         else:
             num = None
-        real_images = torch.load(os.path.join(self.root, self.split, "real.pickle"))
+        real_images = torch.load(os.path.join(self.root, self.split, "real.pickle"), weights_only=True)
         if num is not None:
             real_images = np.random.choice(real_images, num // 3, replace=False)
         real_tgts = [torch.tensor(0)] * len(real_images)
         print(f"real: {len(real_tgts)}")
-        fake_images = torch.load(os.path.join(self.root, self.split, "fake.pickle"))
+        fake_images = torch.load(os.path.join(self.root, self.split, "fake.pickle"), weights_only=True)
         if num is not None:
             fake_images = np.random.choice(fake_images, num - num // 3, replace=False)
         fake_tgts = [torch.tensor(1)] * len(fake_images)

@@ -266,7 +266,7 @@ class Attribute(Module):
         self.ir_152 = IR_152((112,112))
 
         if setting != 3:
-            self.ir_152.load_state_dict(torch.load("./models/ir152.pth"))
+            self.ir_152.load_state_dict(torch.load("./models/ir152.pth", weights_only=True))
 
         if setting == 0:
             # Keep input and body 25/50

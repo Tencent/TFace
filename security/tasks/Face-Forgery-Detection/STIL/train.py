@@ -61,7 +61,7 @@ def main():
     # resume model for a given checkpoint file
     if args.model.resume:
         logger.info(f'resume from {args.model.resume}')
-        checkpoint = torch.load(args.model.resume, map_location='cpu')
+        checkpoint = torch.load(args.model.resume, map_location='cpu', weights_only=True)
         if 'state_dict' in checkpoint:
             sd = checkpoint['state_dict']
             if (not getattr(args.model, 'only_resume_model', False)):

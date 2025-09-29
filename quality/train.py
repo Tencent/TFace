@@ -35,7 +35,7 @@ class TrainQualityTask():
             print('='*20 + "FINE-TUNING" + '='*20)
             net_dict = net.state_dict()
             print('='*20 + "LOADING NETWROK PARAMETERS" + '='*20)
-            pretrained_dict = torch.load(conf.finetuning_model, map_location=device)
+            pretrained_dict = torch.load(conf.finetuning_model, map_location=device, weights_only=True)
             pretrained_dict = {k.replace('module.', ''): v for k, v in pretrained_dict.items()}
             same_dict = {k: v for k, v in pretrained_dict.items() if k in net_dict}
             diff_dict = {k: v for k, v in net_dict.items() if k not in pretrained_dict}

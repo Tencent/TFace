@@ -32,7 +32,7 @@ def main():
         num_layers=int(args.backbone.split("_")[-1]),
         group_size=16
     ).cuda()
-    slerp_model.load_state_dict(torch.load(args.model_path))
+    slerp_model.load_state_dict(torch.load(args.model_path, weights_only=True))
 
     # Load validation datasets
     lfw, cfp, agedb, cplfw, calfw, \

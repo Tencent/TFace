@@ -74,19 +74,19 @@ class MakeupAttack(nn.Module):
             if model_name == 'ir152':
                 self.models_info[model_name][0].append((112, 112))
                 self.fr_model = ir152.IR_152((112, 112))
-                self.fr_model.load_state_dict(torch.load('./models/Pretrained_FR_Models/ir152.pth'))
+                self.fr_model.load_state_dict(torch.load('./models/Pretrained_FR_Models/ir152.pth', weights_only=True))
             if model_name == 'irse50':
                 self.models_info[model_name][0].append((112, 112))
                 self.fr_model = irse.Backbone(50, 0.6, 'ir_se')
-                self.fr_model.load_state_dict(torch.load('./models/Pretrained_FR_Models/irse50.pth'))
+                self.fr_model.load_state_dict(torch.load('./models/Pretrained_FR_Models/irse50.pth', weights_only=True))
             if model_name == 'mobile_face':
                 self.models_info[model_name][0].append((112, 112))
                 self.fr_model = irse.MobileFaceNet(512)
-                self.fr_model.load_state_dict(torch.load('./models/Pretrained_FR_Models/mobile_face.pth'))
+                self.fr_model.load_state_dict(torch.load('./models/Pretrained_FR_Models/mobile_face.pth', weights_only=True))
             if model_name == 'facenet':
                 self.models_info[model_name][0].append((160, 160))
                 self.fr_model = facenet.InceptionResnetV1(num_classes=8631, device=self.device)
-                self.fr_model.load_state_dict(torch.load('./models/Pretrained_FR_Models/facenet.pth'))
+                self.fr_model.load_state_dict(torch.load('./models/Pretrained_FR_Models/facenet.pth', weights_only=True))
             self.fr_model.to(self.device)
             self.fr_model.eval()
             self.models_info[model_name][0].append(self.fr_model)

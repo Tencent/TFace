@@ -44,7 +44,7 @@ def main():
     print(f'ckpt_load_path: {ckpt_load_path}')
     if not ckpt_load_path:
         raise ValueError("You must load a checkpoint by specifying the `model.resume` argument.")
-    checkpoint = torch.load(ckpt_load_path, map_location='cpu')
+    checkpoint = torch.load(ckpt_load_path, map_location='cpu', weights_only=True)
     if 'state_dict' in checkpoint:
         sd = checkpoint['state_dict']
     else:

@@ -28,7 +28,7 @@ def network(eval_model, device):
     net = model.R50([112, 112], use_type="Qua").to(device)
     net_dict = net.state_dict()     
     data_dict = {
-        key.replace('module.', ''): value for key, value in torch.load(eval_model, map_location=device).items()}
+        key.replace('module.', ''): value for key, value in torch.load(eval_model, map_location=device, weights_only=True).items()}
     net_dict.update(data_dict)
     net.load_state_dict(net_dict)
     net.eval()

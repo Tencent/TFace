@@ -35,7 +35,7 @@ class DiffusionSamplerLite(LightningLite):
         checkpoint_path = cfg.checkpoint.path
 
         # loading
-        weights = torch.load(checkpoint_path, map_location="cpu")
+        weights = torch.load(checkpoint_path, map_location="cpu", weights_only=True)
         weights_dict = {}
         for k, v in weights.items():
             new_k = k.replace("eps_model.", "") if "eps_model" in k else k

@@ -42,7 +42,7 @@ class TrainTask(BaseTask):
 
             # load checkpoint for facial landmark detector
             self.inference_model = PFLDInference()
-            inference_model_dict = torch.load(self.cfg['LANDMARK_CKPT_PATH'])
+            inference_model_dict = torch.load(self.cfg['LANDMARK_CKPT_PATH'], weights_only=True)
             self.inference_model.load_state_dict(inference_model_dict['pfld_backbone'])
             self.inference_model.cuda()
             self.inference_model.eval()

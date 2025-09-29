@@ -17,13 +17,13 @@ def load_surrogate_model():
 
     # Load pretrain white-box FR surrogate model
     fr_model = m.IR_152((112, 112))
-    fr_model.load_state_dict(torch.load('./models/ir152.pth'))
+    fr_model.load_state_dict(torch.load('./models/ir152.pth', weights_only=True))
     fr_model.to(device)
     fr_model.eval()
 
     # Load pretrain white-box AR surrogate model
     ar_model = m.IR_152_attr_all()
-    ar_model.load_state_dict(torch.load('./models/ir152_ar.pth'))
+    ar_model.load_state_dict(torch.load('./models/ir152_ar.pth', weights_only=True))
     ar_model.to(device)
     ar_model.eval()
 

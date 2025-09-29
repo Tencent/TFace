@@ -107,7 +107,7 @@ def init_model(net, restore, init_type, init=True):
         if os.path.exists(restore):
 
             # original saved file with DataParallel
-            state_dict = torch.load(restore)
+            state_dict = torch.load(restore, weights_only=True)
             # create new OrderedDict that does not contain `module.`
             from collections import OrderedDict
             new_state_dict = OrderedDict()

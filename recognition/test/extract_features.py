@@ -89,7 +89,7 @@ def main():
         raise RuntimeError("%s not exists" % args.ckpt_path)
 
     # load ckpt
-    backbone.load_state_dict(torch.load(args.ckpt_path))
+    backbone.load_state_dict(torch.load(args.ckpt_path, weights_only=True))
 
     gpus = [int(x) for x in args.gpu_ids.rstrip().split(',')]
     if len(gpus) > 1:

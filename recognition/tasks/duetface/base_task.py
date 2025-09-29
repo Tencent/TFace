@@ -33,7 +33,7 @@ def make_interactive_models(self):
             raise RuntimeError("%s not exists" % ckpt_path)
 
         model_dict = self.backbone.sub_model.state_dict()
-        pretrained_dict = torch.load(ckpt_path)
+        pretrained_dict = torch.load(ckpt_path, weights_only=True)
         pretrained_dict = {k.split('.', 1)[1]: v for k, v in pretrained_dict.items() if
                            k.split('.', 1)[1] in model_dict}
 

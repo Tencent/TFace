@@ -35,7 +35,7 @@ def backboneSet():                                                   # Network s
     # load trained model weights
     if conf.eval_model != None:
         net_dict = net.state_dict()     
-        eval_dict = torch.load(conf.eval_model, map_location=device)
+        eval_dict = torch.load(conf.eval_model, map_location=device, weights_only=True)
         eval_dict = {k.replace('module.', ''): v for k, v in eval_dict.items()}
         same_dict =  {k: v for k, v in eval_dict.items() if k in net_dict}
         net_dict.update(same_dict)

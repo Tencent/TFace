@@ -17,7 +17,7 @@ class VQEncoderInterface(torch.nn.Module):
         self.encoder = Encoder(**dd_config)
         self.quant_conv = torch.nn.Conv2d(dd_config["z_channels"], embed_dim, 1)
 
-        state_dict = torch.load(encoder_state_dict_path)
+        state_dict = torch.load(encoder_state_dict_path, weights_only=True)
         self.load_state_dict(state_dict)
 
     def forward(self, x):
@@ -42,7 +42,7 @@ class VQDecoderInterface(torch.nn.Module):
         self.quantize = VectorQuantizer(n_embed, embed_dim, beta=0.25)
         self.post_quant_conv = torch.nn.Conv2d(embed_dim, dd_config["z_channels"], 1)
 
-        state_dict = torch.load(decoder_state_dict_path)
+        state_dict = torch.load(decoder_state_dict_path, weights_only=True)
         self.load_state_dict(state_dict)
 
     def forward(self, h, force_not_quantize=False):
